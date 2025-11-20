@@ -9,38 +9,409 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation and structure similar to installation.html -->
-
-    <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
-        <div class="pt-5">
-            <article class="doc-content">
-                <header class="mb-4">
-                    <h1>Django Quick Start Guide</h1>
-                    <p class="lead">Get up and running with Django in 15 minutes</p>
-                </header>
-
-                <div class="alert-note">
-                    <strong>Before you start:</strong> Make sure you have <a href="categories/getting-started/installation.html">Django installed</a> and are familiar with basic Python concepts.
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-book me-2"></i>Django Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="quick-start.html">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search.html">Search</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <div class="search-container">
+                        <form action="search.html" method="get" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="Search documentation...">
+                            <button type="submit" class="btn btn-outline-light ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-
-                <section id="create-project">
-                    <h2>1. Create a New Project</h2>
-                    <div class="code-block">
-                        <pre><code class="language-bash">django-admin startproject myproject
-cd myproject</code></pre>
-                    </div>
-                </section>
-
-                <section id="create-app">
-                    <h2>2. Create an App</h2>
-                    <div class="code-block">
-                        <pre><code class="language-bash">python manage.py startapp myapp</code></pre>
-                    </div>
-                </section>
-
-                <!-- More quick start content... -->
-            </article>
+            </div>
         </div>
-    </main>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light sidebar">
+                <div class="position-sticky pt-5">
+                    <div class="p-3">
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Documentation</h6>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">
+                                    <i class="fas fa-home me-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="quick-start.html">
+                                    <i class="fas fa-rocket me-2"></i>Quick Start
+                                </a>
+                            </li>
+                            
+                            <!-- Getting Started -->
+                            <li class="category-header">
+                                <i class="fas fa-play-circle me-2"></i>Getting Started
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/getting-started/installation.html">
+                                    Installation Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/getting-started/first-project.html">
+                                    Writing Your First Django App
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/getting-started/tutorial.html">
+                                    Complete Tutorial
+                                </a>
+                            </li>
+
+                            <!-- Models & ORM -->
+                            <li class="category-header">
+                                <i class="fas fa-database me-2"></i>Models & ORM
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/models-orm/models.html">
+                                    Models and Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/models-orm/queries.html">
+                                    Making Queries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/models-orm/migrations.html">
+                                    Database Migrations
+                                </a>
+                            </li>
+
+                            <!-- Views & Templates -->
+                            <li class="category-header">
+                                <i class="fas fa-code me-2"></i>Views & Templates
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/views-templates/views.html">
+                                    Class-based and Function Views
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/views-templates/templates.html">
+                                    Template Language
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/views-templates/forms.html">
+                                    Forms and Validation
+                                </a>
+                            </li>
+
+                            <!-- Deployment -->
+                            <li class="category-header">
+                                <i class="fas fa-server me-2"></i>Deployment
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/deployment/production.html">
+                                    Deployment Checklist
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/deployment/performance.html">
+                                    Performance Optimization
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="categories/deployment/security.html">
+                                    Security Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
+                <div class="pt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Quick Start Guide</li>
+                        </ol>
+                    </nav>
+
+                    <article class="doc-content">
+                        <header class="mb-4">
+                            <h1>Django Quick Start Guide</h1>
+                            <p class="lead">Get up and running with Django in 15 minutes</p>
+                            <div class="text-muted d-flex align-items-center gap-3">
+                                <span><i class="fas fa-clock me-1"></i> 15 min read</span>
+                                <span><i class="fas fa-calendar me-1"></i> Updated Jan 2024</span>
+                                <span class="badge bg-success">Beginner</span>
+                            </div>
+                        </header>
+
+                        <div class="alert-note">
+                            <strong>Before you start:</strong> Make sure you have <a href="categories/getting-started/installation.html">Django installed</a> and are familiar with basic Python concepts.
+                        </div>
+
+                        <section id="create-project">
+                            <h2>1. Create a New Project</h2>
+                            <p>Start by creating a new Django project:</p>
+                            
+                            <div class="code-block">
+                                <pre><code class="language-bash">django-admin startproject mysite
+cd mysite</code></pre>
+                            </div>
+
+                            <p>This creates a <code>mysite</code> directory with the following structure:</p>
+
+                            <div class="code-block">
+                                <pre><code>mysite/
+    manage.py
+    mysite/
+        __init__.py
+        settings.py
+        urls.py
+        asgi.py
+        wsgi.py</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="run-server">
+                            <h2>2. Run the Development Server</h2>
+                            <p>Verify your installation by running the development server:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-bash">python manage.py runserver</code></pre>
+                            </div>
+
+                            <p>Visit <code>http://127.0.0.1:8000</code> in your browser. You should see the Django welcome page.</p>
+                        </section>
+
+                        <section id="create-app">
+                            <h2>3. Create Your First App</h2>
+                            <p>In Django, a "project" is made of multiple "apps". Create your first app:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-bash">python manage.py startapp polls</code></pre>
+                            </div>
+
+                            <p>This creates a <code>polls</code> directory with the app structure.</p>
+                        </section>
+
+                        <section id="create-model">
+                            <h2>4. Create a Model</h2>
+                            <p>Edit <code>polls/models.py</code> to create your first model:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-python">from django.db import models
+
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.question_text
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.choice_text</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="activate-app">
+                            <h2>5. Activate the App</h2>
+                            <p>Add your app to <code>mysite/settings.py</code>:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-python">INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="migrations">
+                            <h2>6. Create and Run Migrations</h2>
+                            <p>Create migration files and apply them to your database:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-bash">python manage.py makemigrations polls
+python manage.py migrate</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="create-admin">
+                            <h2>7. Create an Admin User</h2>
+                            <p>Create a superuser to access the admin interface:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-bash">python manage.py createsuperuser</code></pre>
+                            </div>
+
+                            <p>Follow the prompts to create your admin account.</p>
+                        </section>
+
+                        <section id="register-models">
+                            <h2>8. Register Models with Admin</h2>
+                            <p>Edit <code>polls/admin.py</code> to make your models visible in the admin:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-python">from django.contrib import admin
+from .models import Question, Choice
+
+admin.site.register(Question)
+admin.site.register(Choice)</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="create-views">
+                            <h2>9. Create Your First View</h2>
+                            <p>Edit <code>polls/views.py</code> to create a simple view:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-python">from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="setup-urls">
+                            <h2>10. Configure URLs</h2>
+                            <p>Create <code>polls/urls.py</code>:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-python">from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]</code></pre>
+                            </div>
+
+                            <p>Include the polls URLs in your project's <code>mysite/urls.py</code>:</p>
+
+                            <div class="code-block">
+                                <pre><code class="language-python">from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('polls/', include('polls.urls')),
+    path('admin/', admin.site.urls),
+]</code></pre>
+                            </div>
+                        </section>
+
+                        <section id="test-app">
+                            <h2>11. Test Your Application</h2>
+                            <p>Visit these URLs in your browser:</p>
+                            <ul>
+                                <li><code>http://127.0.0.1:8000/polls/</code> - Your poll index page</li>
+                                <li><code>http://127.0.0.1:8000/admin/</code> - Django admin interface</li>
+                            </ul>
+                        </section>
+
+                        <section id="next-steps">
+                            <h2>Next Steps</h2>
+                            <p>Congratulations! You've created your first Django application. Continue learning with:</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Complete Tutorial</h5>
+                                            <p class="card-text">Follow the comprehensive 7-part tutorial to build a complete polling application.</p>
+                                            <a href="categories/getting-started/tutorial.html" class="btn btn-primary">Start Tutorial</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Learn Models</h5>
+                                            <p class="card-text">Deep dive into Django models, relationships, and database operations.</p>
+                                            <a href="categories/models-orm/models.html" class="btn btn-success">Explore Models</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Views & Templates</h5>
+                                            <p class="card-text">Learn about views, templates, and creating dynamic web pages.</p>
+                                            <a href="categories/views-templates/views.html" class="btn btn-info">Learn Views</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Django Documentation</h5>
+                    <p class="text-muted">Complete guide to building web applications with Django.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-muted">Home</a></li>
+                        <li><a href="categories/getting-started/tutorial.html" class="text-muted">Tutorial</a></li>
+                        <li><a href="categories/deployment/production.html" class="text-muted">Deployment</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://djangoproject.com" class="text-muted" target="_blank">Official Django Website</a></li>
+                        <li><a href="https://docs.djangoproject.com" class="text-muted" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/django" class="text-muted" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Django Documentation. This is a static documentation site for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
