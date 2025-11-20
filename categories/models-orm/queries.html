@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making Queries - Django Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-book me-2"></i>Django Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../quick-start.html">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../search.html">Search</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <div class="search-container">
+                        <form action="../../search.html" method="get" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="Search documentation...">
+                            <button type="submit" class="btn btn-outline-light ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light sidebar">
+                <div class="position-sticky pt-5">
+                    <div class="p-3">
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Documentation</h6>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">
+                                    <i class="fas fa-home me-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../quick-start.html">
+                                    <i class="fas fa-rocket me-2"></i>Quick Start
+                                </a>
+                            </li>
+                            
+                            <!-- Getting Started -->
+                            <li class="category-header">
+                                <i class="fas fa-play-circle me-2"></i>Getting Started
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/installation.html">
+                                    Installation Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/first-project.html">
+                                    Writing Your First Django App
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/tutorial.html">
+                                    Complete Tutorial
+                                </a>
+                            </li>
+
+                            <!-- Models & ORM -->
+                            <li class="category-header">
+                                <i class="fas fa-database me-2"></i>Models & ORM
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="models.html">
+                                    Models and Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active ps-4" href="queries.html">
+                                    Making Queries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="migrations.html">
+                                    Database Migrations
+                                </a>
+                            </li>
+
+                            <!-- Views & Templates -->
+                            <li class="category-header">
+                                <i class="fas fa-code me-2"></i>Views & Templates
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/views.html">
+                                    Class-based and Function Views
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/templates.html">
+                                    Template Language
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/forms.html">
+                                    Forms and Validation
+                                </a>
+                            </li>
+
+                            <!-- Deployment -->
+                            <li class="category-header">
+                                <i class="fas fa-server me-2"></i>Deployment
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/production.html">
+                                    Deployment Checklist
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/performance.html">
+                                    Performance Optimization
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/security.html">
+                                    Security Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
+                <div class="pt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="../../index.html">Models & ORM</a></li>
+                            <li class="breadcrumb-item active">Making Queries</li>
+                        </ol>
+                    </nav>
+
+                    <article class="doc-content">
+                        <header class="mb-4">
+                            <h1>Making Queries</h1>
+                            <div class="text-muted d-flex align-items-center gap-3">
+                                <span><i class="fas fa-clock me-1"></i> 30 min read</span>
+                                <span><i class="fas fa-calendar me-1"></i> Updated Jan 2024</span>
+                                <span class="badge bg-success">Database</span>
+                            </div>
+                        </header>
+
+                        <div class="alert alert-info">
+                            <strong><i class="fas fa-lightbulb me-2"></i>Pro Tip:</strong> Django's ORM (Object-Relational Mapping) allows you to interact with your database using Python code instead of SQL. It's powerful, secure, and database-agnostic.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <section id="introduction">
+                                    <h2>Introduction</h2>
+                                    <p>Django's ORM provides a powerful, Pythonic way to create, retrieve, update, and delete records in your database. This guide covers everything from basic queries to advanced optimization techniques.</p>
+                                    
+                                    <div class="row text-center mb-4">
+                                        <div class="col-md-3">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-search fa-2x text-primary mb-2"></i>
+                                                    <h5>Retrieve</h5>
+                                                    <p class="text-muted">Query and filter data</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-plus fa-2x text-success mb-2"></i>
+                                                    <h5>Create</h5>
+                                                    <p class="text-muted">Add new records</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-edit fa-2x text-warning mb-2"></i>
+                                                    <h5>Update</h5>
+                                                    <p class="text-muted">Modify existing data</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-trash fa-2x text-danger mb-2"></i>
+                                                    <h5>Delete</h5>
+                                                    <p class="text-muted">Remove records</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="basic-queries">
+                                    <h2>Basic Queries</h2>
+                                    <p>Fundamental operations for retrieving data from your database.</p>
+
+                                    <h3>Retrieving All Objects</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from myapp.models import Article
+
+# Get all articles
+all_articles = Article.objects.all()
+
+# Convert to list (executes the query)
+articles_list = list(all_articles)
+
+# Iterate directly (more memory efficient)
+for article in Article.objects.all():
+    print(article.title)</code></pre>
+                                    </div>
+
+                                    <h3>Retrieving Single Objects</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Get a single object by primary key
+article = Article.objects.get(pk=1)
+
+# Get by any field
+article = Article.objects.get(title="My First Article")
+
+# Using get() with multiple criteria
+article = Article.objects.get(
+    title="My Article", 
+    status="published"
+)
+
+# Handle DoesNotExist exception
+try:
+    article = Article.objects.get(pk=999)
+except Article.DoesNotExist:
+    print("Article not found")
+
+# Handle MultipleObjectsReturned exception
+try:
+    article = Article.objects.get(title="Common Title")
+except Article.MultipleObjectsReturned:
+    print("Multiple articles found")</code></pre>
+                                    </div>
+
+                                    <h3>Using first() and last()</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Get first object
+first_article = Article.objects.first()
+
+# Get last object
+last_article = Article.objects.last()
+
+# Get first matching object
+recent_article = Article.objects.filter(
+    published=True
+).first()</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="filtering-queries">
+                                    <h2>Filtering Queries</h2>
+                                    <p>Narrow down your results using various filtering techniques.</p>
+
+                                    <h3>Basic Filtering</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Basic equality filter
+published_articles = Article.objects.filter(published=True)
+
+# Multiple conditions (AND)
+recent_published = Article.objects.filter(
+    published=True,
+    created_at__year=2024
+)
+
+# Chaining filters
+articles = Article.objects.filter(
+    published=True
+).filter(
+    author__username="john"
+)</code></pre>
+                                    </div>
+
+                                    <h3>Field Lookups</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Exact match (default)
+articles = Article.objects.filter(title__exact="My Article")
+
+# Case-insensitive match
+articles = Article.objects.filter(title__iexact="my article")
+
+# Contains
+articles = Article.objects.filter(title__contains="Django")
+
+# Case-insensitive contains
+articles = Article.objects.filter(title__icontains="django")
+
+# Startswith / endswith
+articles = Article.objects.filter(title__startswith="How to")
+articles = Article.objects.filter(title__endswith="Tutorial")
+
+# In list
+articles = Article.objects.filter(
+    status__in=["published", "draft"]
+)
+
+# Range
+from datetime import date
+articles = Article.objects.filter(
+    publish_date__range=(
+        date(2024, 1, 1), 
+        date(2024, 12, 31)
+    )
+)</code></pre>
+                                    </div>
+
+                                    <h3>Comparison Lookups</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Greater than
+popular_articles = Article.objects.filter(
+    views__gt=1000
+)
+
+# Greater than or equal
+popular_articles = Article.objects.filter(
+    views__gte=1000
+)
+
+# Less than
+old_articles = Article.objects.filter(
+    views__lt=100
+)
+
+# Less than or equal
+old_articles = Article.objects.filter(
+    views__lte=100
+)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="exclude-queries">
+                                    <h2>Excluding Results</h2>
+                                    <p>Exclude specific records from your query results.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Exclude specific records
+draft_articles = Article.objects.exclude(published=True)
+
+# Exclude with multiple conditions
+articles = Article.objects.exclude(
+    published=False,
+    author__is_staff=True
+)
+
+# Chaining exclude
+articles = Article.objects.all().exclude(
+    published=False
+).exclude(
+    author=None
+)
+
+# Complex exclusion
+from datetime import datetime, timedelta
+last_week = datetime.now() - timedelta(days=7)
+old_articles = Article.objects.exclude(
+    created_at__gte=last_week
+)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="ordering-queries">
+                                    <h2>Ordering Results</h2>
+                                    <p>Control the order in which results are returned.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Order by single field
+articles = Article.objects.order_by('created_at')
+
+# Order by descending
+articles = Article.objects.order_by('-created_at')
+
+# Multiple field ordering
+articles = Article.objects.order_by('author', '-created_at')
+
+# Random ordering
+articles = Article.objects.order_by('?')
+
+# Default ordering in model
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-created_at']  # Default ordering
+
+# Override default ordering
+articles = Article.objects.order_by('title')</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="slicing-queries">
+                                    <h2>Slicing and Limiting</h2>
+                                    <p>Limit the number of results returned.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Limit results (similar to SQL LIMIT)
+recent_articles = Article.objects.all()[:5]
+
+# Offset and limit (similar to SQL OFFSET)
+older_articles = Article.objects.all()[5:10]
+
+# Get single object by position
+first_article = Article.objects.all()[0]  # Risky - use first() instead
+
+# Common patterns
+latest_article = Article.objects.latest('created_at')
+oldest_article = Article.objects.earliest('created_at')
+
+# Using first() and last() with ordering
+latest = Article.objects.order_by('-created_at').first()
+oldest = Article.objects.order_by('created_at').first()</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="relationship-queries">
+                                    <h2>Relationship Queries</h2>
+                                    <p>Query across model relationships (Foreign Key, Many-to-Many, One-to-One).</p>
+
+                                    <h3>Foreign Key Relationships</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Forward relationships
+articles = Article.objects.filter(author__username='john')
+
+# Reverse relationships (related_name)
+user = User.objects.get(username='john')
+user_articles = user.article_set.all()
+
+# With custom related_name
+class Article(models.Model):
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+        related_name='articles'  # Custom related_name
+    )
+
+# Then you can use:
+user_articles = user.articles.all()
+
+# Chaining through relationships
+articles = Article.objects.filter(
+    author__profile__country='US'
+)</code></pre>
+                                    </div>
+
+                                    <h3>Many-to-Many Relationships</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Forward direction
+articles = Article.objects.filter(categories__name='Technology')
+
+# Reverse direction
+category = Category.objects.get(name='Technology')
+tech_articles = category.article_set.all()
+
+# Many-to-many through intermediate model
+class Article(models.Model):
+    tags = models.ManyToManyField('Tag', through='ArticleTag')
+
+# Query through intermediate model
+articles = Article.objects.filter(
+    articletag__added_by__username='john'
+)</code></pre>
+                                    </div>
+
+                                    <h3>One-to-One Relationships</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Forward direction
+users = User.objects.filter(profile__website='example.com')
+
+# Reverse direction
+from django.contrib.auth.models import User
+profile = Profile.objects.get(user__username='john')</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="q-objects">
+                                    <h2>Complex Queries with Q Objects</h2>
+                                    <p>Create complex query conditions with OR, AND, and NOT operations.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db.models import Q
+
+# OR conditions
+articles = Article.objects.filter(
+    Q(title__icontains='django') | Q(content__icontains='django')
+)
+
+# AND conditions
+articles = Article.objects.filter(
+    Q(published=True) & Q(author__is_staff=True)
+)
+
+# NOT conditions
+articles = Article.objects.filter(
+    ~Q(status='draft')
+)
+
+# Complex combinations
+articles = Article.objects.filter(
+    Q(title__icontains='tutorial') | 
+    Q(content__icontains='guide'),
+    Q(published=True) & 
+    ~Q(author__username='admin')
+)
+
+# Using & and | operators
+complex_query = Q(title__icontains='python') & Q(published=True)
+complex_query |= Q(author__is_staff=True)  # Add OR condition
+articles = Article.objects.filter(complex_query)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="aggregation">
+                                    <h2>Aggregation</h2>
+                                    <p>Perform calculations across multiple records.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db.models import Count, Avg, Max, Min, Sum
+
+# Count objects
+total_articles = Article.objects.count()
+published_count = Article.objects.filter(published=True).count()
+
+# Count with aggregation
+from django.db.models import Count
+author_stats = Article.objects.values('author').annotate(
+    article_count=Count('id')
+).order_by('-article_count')
+
+# Multiple aggregations
+stats = Article.objects.aggregate(
+    total=Count('id'),
+    published=Count('id', filter=Q(published=True)),
+    average_views=Avg('view_count'),
+    max_views=Max('view_count'),
+    total_views=Sum('view_count')
+)
+
+# Group by with aggregation
+from django.db.models import Count, Avg
+category_stats = Article.objects.values('category__name').annotate(
+    article_count=Count('id'),
+    avg_views=Avg('view_count')
+).order_by('-article_count')</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="annotation">
+                                    <h2>Annotation</h2>
+                                    <p>Add computed fields to each object in a queryset.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db.models import Count, F, Value
+from django.db.models.functions import Concat
+
+# Annotate with related count
+articles = Article.objects.annotate(
+    comment_count=Count('comments')
+).filter(comment_count__gt=0)
+
+# Using F() expressions for field operations
+articles = Article.objects.annotate(
+    popularity_score=F('view_count') * F('like_count')
+).order_by('-popularity_score')
+
+# Complex annotations
+from django.db.models import Case, When, Value, IntegerField
+articles = Article.objects.annotate(
+    priority=Case(
+        When(view_count__gt=1000, then=Value(1)),
+        When(view_count__gt=100, then=Value(2)),
+        default=Value(3),
+        output_field=IntegerField(),
+    )
+).order_by('priority', '-created_at')
+
+# String concatenation
+articles = Article.objects.annotate(
+    full_title=Concat(
+        'author__username', 
+        Value(': '), 
+        'title'
+    )
+)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="performance-optimization">
+                                    <h2>Performance Optimization</h2>
+                                    <p>Techniques to make your queries faster and more efficient.</p>
+
+                                    <h3>select_related() - Foreign Key Optimization</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Without select_related - causes N+1 queries
+articles = Article.objects.all()
+for article in articles:
+    print(article.author.username)  # Database query for each article
+
+# With select_related - single query
+articles = Article.objects.select_related('author').all()
+for article in articles:
+    print(article.author.username)  # No additional queries
+
+# Multiple relationships
+articles = Article.objects.select_related(
+    'author', 'author__profile', 'category'
+).all()</code></pre>
+                                    </div>
+
+                                    <h3>prefetch_related() - Many-to-Many Optimization</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Without prefetch_related - causes N+1 queries
+articles = Article.objects.all()
+for article in articles:
+    for tag in article.tags.all():  # Database query for each article
+        print(tag.name)
+
+# With prefetch_related - two queries total
+articles = Article.objects.prefetch_related('tags').all()
+for article in articles:
+    for tag in article.tags.all():  # No additional queries
+        print(tag.name)
+
+# Nested prefetch_related
+articles = Article.objects.prefetch_related(
+    'tags',
+    'comments',
+    'comments__author'
+).all()</code></pre>
+                                    </div>
+
+                                    <h3>only() and defer()</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># only() - load only specified fields
+articles = Article.objects.only('title', 'created_at', 'author_id')
+
+# defer() - load all fields except specified ones
+articles = Article.objects.defer('content', 'metadata')
+
+# Combined with select_related
+articles = Article.objects.select_related('author').only(
+    'title', 'created_at', 'author__username'
+)</code></pre>
+                                    </div>
+
+                                    <h3>QuerySet Caching</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># QuerySets are lazy and cache results
+articles = Article.objects.all()  # No database hit yet
+
+# First evaluation - hits database and caches results
+print(len(articles))  # Database query
+
+# Subsequent uses - uses cache
+for article in articles:  # No database query
+    print(article.title)
+
+# Be careful with slicing - creates new QuerySet
+first_five = articles[:5]  # New QuerySet, new database query</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="raw-sql">
+                                    <h2>Raw SQL Queries</h2>
+                                    <p>When you need to write custom SQL while still using Django's ORM benefits.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Raw SQL with model mapping
+articles = Article.objects.raw('''
+    SELECT * FROM blog_article 
+    WHERE published = true 
+    AND created_at > %s
+''', [datetime(2024, 1, 1)])
+
+# Raw SQL without model mapping
+from django.db import connection
+with connection.cursor() as cursor:
+    cursor.execute('''
+        SELECT title, COUNT(*) as count 
+        FROM blog_article 
+        GROUP BY title 
+        HAVING COUNT(*) > 1
+    ''')
+    duplicates = cursor.fetchall()
+
+# Using raw() with parameters (safe from SQL injection)
+articles = Article.objects.raw(
+    'SELECT * FROM blog_article WHERE author_id = %s',
+    [user_id]
+)</code></pre>
+                                    </div>
+
+                                    <div class="alert-danger">
+                                        <strong>Warning:</strong> Always use parameterized queries with raw() to prevent SQL injection attacks. Never use string formatting with user input.
+                                    </div>
+                                </section>
+
+                                <section id="transactions">
+                                    <h2>Database Transactions</h2>
+                                    <p>Ensure data integrity with atomic operations.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db import transaction
+
+# Using transaction.atomic as decorator
+@transaction.atomic
+def update_article_stats(article_id):
+    article = Article.objects.get(pk=article_id)
+    article.view_count += 1
+    article.save()
+    
+    # If anything fails, all changes are rolled back
+
+# Using transaction.atomic as context manager
+def complex_operation():
+    try:
+        with transaction.atomic():
+            # Multiple database operations
+            article = Article.objects.create(...)
+            article.tags.add(...)
+            # All or nothing
+    except Exception as e:
+        # Transaction already rolled back
+        print(f"Operation failed: {e}")
+
+# Savepoints for nested transactions
+with transaction.atomic():
+    # Outer transaction
+    article = Article.objects.create(...)
+    
+    try:
+        with transaction.atomic():
+            # Inner transaction (savepoint)
+            article.tags.add(...)
+            # Can rollback inner without affecting outer
+    except Exception:
+        # Inner transaction rolled back, outer continues
+        pass</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="query-methods">
+                                    <h2>QuerySet Method Reference</h2>
+                                    <p>Commonly used QuerySet methods and their purposes.</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Method</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>all()</code></td>
+                                                    <td>Return all objects</td>
+                                                    <td><code>Article.objects.all()</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>filter()</code></td>
+                                                    <td>Return objects matching criteria</td>
+                                                    <td><code>filter(published=True)</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>exclude()</code></td>
+                                                    <td>Return objects not matching criteria</td>
+                                                    <td><code>exclude(published=False)</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>get()</code></td>
+                                                    <td>Return single object</td>
+                                                    <td><code>get(pk=1)</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>first()</code></td>
+                                                    <td>Return first object</td>
+                                                    <td><code>order_by('id').first()</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>last()</code></td>
+                                                    <td>Return last object</td>
+                                                    <td><code>order_by('-id').first()</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>count()</code></td>
+                                                    <td>Return count of objects</td>
+                                                    <td><code>filter(published=True).count()</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>exists()</code></td>
+                                                    <td>Return True if any objects exist</td>
+                                                    <td><code>filter(title="X").exists()</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>order_by()</code></td>
+                                                    <td>Order results by field(s)</td>
+                                                    <td><code>order_by('-created_at')</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>distinct()</code></td>
+                                                    <td>Return unique results</td>
+                                                    <td><code>values('author').distinct()</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>values()</code></td>
+                                                    <td>Return dictionaries instead of objects</td>
+                                                    <td><code>values('title', 'author')</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>values_list()</code></td>
+                                                    <td>Return tuples of field values</td>
+                                                    <td><code>values_list('title', flat=True)</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>select_related()</code></td>
+                                                    <td>Optimize foreign key relationships</td>
+                                                    <td><code>select_related('author')</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>prefetch_related()</code></td>
+                                                    <td>Optimize many-to-many relationships</td>
+                                                    <td><code>prefetch_related('tags')</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>only()</code></td>
+                                                    <td>Load only specified fields</td>
+                                                    <td><code>only('title', 'created_at')</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>defer()</code></td>
+                                                    <td>Load all fields except specified ones</td>
+                                                    <td><code>defer('content')</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>aggregate()</code></td>
+                                                    <td>Perform aggregation across queryset</td>
+                                                    <td><code>aggregate(Count('id'))</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>annotate()</code></td>
+                                                    <td>Add computed fields to each object</td>
+                                                    <td><code>annotate(comment_count=Count('comments'))</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+
+                                <section id="best-practices">
+                                    <h2>Best Practices</h2>
+                                    <p>Follow these guidelines for efficient and maintainable queries.</p>
+
+                                    <h3>Performance Guidelines</h3>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Do</th>
+                                                    <th>Don't</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>✅ Use <code>select_related()</code> for ForeignKey</td>
+                                                    <td>❌ Cause N+1 query problems</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use <code>prefetch_related()</code> for ManyToMany</td>
+                                                    <td>❌ Load all related objects individually</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use <code>only()</code> and <code>defer()</code></td>
+                                                    <td>❌ Load unnecessary fields</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use <code>count()</code> for counting</td>
+                                                    <td>❌ Use <code>len(queryset)</code> for large querysets</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use <code>exists()</code> for existence checks</td>
+                                                    <td>❌ Use <code>count() > 0</code> or <code>bool(queryset)</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use database indexes</td>
+                                                    <td>❌ Query on unindexed fields in production</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h3>Security Guidelines</h3>
+                                    <div class="alert-note">
+                                        <strong>Security Checklist:</strong>
+                                        <ul class="mb-0">
+                                            <li>Always use parameterized queries with <code>raw()</code></li>
+                                            <li>Validate and sanitize user input before using in queries</li>
+                                            <li>Use Django's built-in security features (CSRF, XSS protection)</li>
+                                            <li>Be cautious with <code>extra()</code> and custom SQL</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <section id="next-steps">
+                                    <h2>Next Steps</h2>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-table fa-2x text-primary mb-3"></i>
+                                                    <h5 class="card-title">Models and Fields</h5>
+                                                    <p class="card-text">Learn about Django models, fields, and relationships.</p>
+                                                    <a href="models.html" class="btn btn-primary">Models Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-sync fa-2x text-warning mb-3"></i>
+                                                    <h5 class="card-title">Database Migrations</h5>
+                                                    <p class="card-text">Learn how to manage database schema changes.</p>
+                                                    <a href="migrations.html" class="btn btn-warning">Migrations Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-tachometer-alt fa-2x text-success mb-3"></i>
+                                                    <h5 class="card-title">Performance Optimization</h5>
+                                                    <p class="card-text">Optimize your Django application performance.</p>
+                                                    <a href="../deployment/performance.html" class="btn btn-success">Performance Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="sticky-top" style="top: 6rem;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">On This Page</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <nav class="nav flex-column">
+                                                <a class="nav-link ps-0" href="#introduction">Introduction</a>
+                                                <a class="nav-link ps-0" href="#basic-queries">Basic Queries</a>
+                                                <a class="nav-link ps-0" href="#filtering-queries">Filtering Queries</a>
+                                                <a class="nav-link ps-0" href="#exclude-queries">Excluding Results</a>
+                                                <a class="nav-link ps-0" href="#ordering-queries">Ordering Results</a>
+                                                <a class="nav-link ps-0" href="#slicing-queries">Slicing & Limiting</a>
+                                                <a class="nav-link ps-0" href="#relationship-queries">Relationship Queries</a>
+                                                <a class="nav-link ps-0" href="#q-objects">Q Objects</a>
+                                                <a class="nav-link ps-0" href="#aggregation">Aggregation</a>
+                                                <a class="nav-link ps-0" href="#annotation">Annotation</a>
+                                                <a class="nav-link ps-0" href="#performance-optimization">Performance</a>
+                                                <a class="nav-link ps-0" href="#raw-sql">Raw SQL</a>
+                                                <a class="nav-link ps-0" href="#transactions">Transactions</a>
+                                                <a class="nav-link ps-0" href="#query-methods">Method Reference</a>
+                                                <a class="nav-link ps-0" href="#best-practices">Best Practices</a>
+                                                <a class="nav-link ps-0" href="#next-steps">Next Steps</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Quick Reference</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-primary p-2 mb-2">
+                                                <small><strong>N+1 Problem:</strong> Use select_related/prefetch_related</small>
+                                            </div>
+                                            <div class="alert alert-success p-2 mb-2">
+                                                <small><strong>Performance:</strong> Use only()/defer() for fields</small>
+                                            </div>
+                                            <div class="alert alert-warning p-2">
+                                                <small><strong>Security:</strong> Use parameterized raw queries</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Common Methods</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <code class="small d-block mb-1">filter() / exclude()</code>
+                                            <code class="small d-block mb-1">get() / first() / last()</code>
+                                            <code class="small d-block mb-1">count() / exists()</code>
+                                            <code class="small d-block">select_related()</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Related Guides</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="list-group list-group-flush">
+                                                <a href="models.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-table me-2 text-primary"></i>
+                                                    Models and Fields
+                                                </a>
+                                                <a href="migrations.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-sync me-2 text-warning"></i>
+                                                    Database Migrations
+                                                </a>
+                                                <a href="../deployment/performance.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-tachometer-alt me-2 text-success"></i>
+                                                    Performance Optimization
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Django Documentation</h5>
+                    <p class="text-muted">Complete guide to building web applications with Django.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html" class="text-muted">Home</a></li>
+                        <li><a href="../../quick-start.html" class="text-muted">Quick Start</a></li>
+                        <li><a href="../getting-started/tutorial.html" class="text-muted">Tutorial</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://djangoproject.com" class="text-muted" target="_blank">Official Django Website</a></li>
+                        <li><a href="https://docs.djangoproject.com" class="text-muted" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/django" class="text-muted" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Django Documentation. This is a static documentation site for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
