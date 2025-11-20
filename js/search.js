@@ -1,159 +1,134 @@
-// Search functionality for static documentation
-class DocumentationSearch {
-    constructor() {
-        this.searchIndex = [];
-        this.init();
+// Simple search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('q');
+    
+    if (searchQuery) {
+        performSearch(searchQuery);
     }
+});
 
-    async init() {
-        await this.loadSearchIndex();
-        this.setupEventListeners();
+function performSearch(query) {
+    const searchInput = document.querySelector('input[name="q"]');
+    if (searchInput) {
+        searchInput.value = query;
     }
-
-    async loadSearchIndex() {
-        // This would typically load from a JSON file
-        // For now, we'll use a hardcoded index
-        this.searchIndex = [
-            {
-                title: "Installation Guide",
-                content: "How to install Django using pip and set up your development environment",
-                url: "categories/getting-started/installation.html",
-                category: "Getting Started"
-            },
-            {
-                title: "Writing Your First Django App",
-                content: "Step-by-step guide to creating your first Django application with models, views, and templates",
-                url: "categories/getting-started/first-project.html",
-                category: "Getting Started"
-            },
-            {
-                title: "Models and Fields",
-                content: "Learn about Django models, fields, relationships, and model methods",
-                url: "categories/models-orm/models.html",
-                category: "Models & ORM"
-            },
-            {
-                title: "Making Queries",
-                content: "How to make database queries using Django's ORM with filter, exclude, and Q objects",
-                url: "categories/models-orm/queries.html",
-                category: "Models & ORM"
-            },
-            {
-                title: "Class-based and Function Views",
-                content: "Understanding Django views, both function-based and class-based views",
-                url: "categories/views-templates/views.html",
-                category: "Views & Templates"
-            },
-            {
-                title: "Template Language",
-                content: "Django template language syntax, tags, filters, and template inheritance",
-                url: "categories/views-templates/templates.html",
-                category: "Views & Templates"
-            },
-            {
-                title: "Deployment Checklist",
-                content: "Complete checklist for deploying Django applications to production",
-                url: "categories/deployment/production.html",
-                category: "Deployment"
-            }
-        ];
-    }
-
-    setupEventListeners() {
-        const searchInput = document.getElementById('search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                this.handleSearch(e.target.value);
-            });
-
-            searchInput.addEventListener('focus', () => {
-                this.showSearchResults();
-            });
-
-            // Hide results when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.search-container')) {
-                    this.hideSearchResults();
-                }
-            });
+    
+    const searchResults = document.getElementById('search-results');
+    if (!searchResults) return;
+    
+    // Simple search data - in a real implementation, this would be a comprehensive index
+    const searchData = [
+        {
+            title: "Installation Guide",
+            content: "How to install Django using pip and set up your development environment",
+            url: "categories/getting-started/installation.html",
+            category: "Getting Started"
+        },
+        {
+            title: "Writing Your First Django App",
+            content: "Step-by-step guide to creating your first Django application with models, views, and templates",
+            url: "categories/getting-started/first-project.html",
+            category: "Getting Started"
+        },
+        {
+            title: "Complete Tutorial",
+            content: "Comprehensive 7-part tutorial covering all aspects of Django development",
+            url: "categories/getting-started/tutorial.html",
+            category: "Getting Started"
+        },
+        {
+            title: "Models and Fields",
+            content: "Learn about Django models, fields, relationships, and model methods",
+            url: "categories/models-orm/models.html",
+            category: "Models & ORM"
+        },
+        {
+            title: "Making Queries",
+            content: "How to make database queries using Django's ORM with filter, exclude, and Q objects",
+            url: "categories/models-orm/queries.html",
+            category: "Models & ORM"
+        },
+        {
+            title: "Database Migrations",
+            content: "Understanding and working with Django migrations for database schema changes",
+            url: "categories/models-orm/migrations.html",
+            category: "Models & ORM"
+        },
+        {
+            title: "Class-based and Function Views",
+            content: "Understanding Django views, both function-based and class-based views",
+            url: "categories/views-templates/views.html",
+            category: "Views & Templates"
+        },
+        {
+            title: "Template Language",
+            content: "Django template language syntax, tags, filters, and template inheritance",
+            url: "categories/views-templates/templates.html",
+            category: "Views & Templates"
+        },
+        {
+            title: "Forms and Validation",
+            content: "Creating forms, handling form submissions, and implementing validation",
+            url: "categories/views-templates/forms.html",
+            category: "Views & Templates"
+        },
+        {
+            title: "Deployment Checklist",
+            content: "Complete checklist for deploying Django applications to production",
+            url: "categories/deployment/production.html",
+            category: "Deployment"
+        },
+        {
+            title: "Performance Optimization",
+            content: "Techniques for optimizing Django application performance and scalability",
+            url: "categories/deployment/performance.html",
+            category: "Deployment"
+        },
+        {
+            title: "Security Best Practices",
+            content: "Security considerations and best practices for Django applications",
+            url: "categories/deployment/security.html",
+            category: "Deployment"
+        },
+        {
+            title: "Quick Start Guide",
+            content: "Get up and running with Django in 15 minutes with this quick start guide",
+            url: "quick-start.html",
+            category: "Getting Started"
         }
-    }
-
-    handleSearch(query) {
-        if (query.length < 2) {
-            this.hideSearchResults();
-            return;
-        }
-
-        const results = this.searchDocuments(query);
-        this.displayResults(results);
-        this.showSearchResults();
-    }
-
-    searchDocuments(query) {
-        const searchTerms = query.toLowerCase().split(' ');
-        
-        return this.searchIndex.filter(doc => {
-            const searchableText = (
-                doc.title + ' ' + doc.content + ' ' + doc.category
-            ).toLowerCase();
-            
-            return searchTerms.every(term => 
-                searchableText.includes(term)
-            );
-        }).slice(0, 5); // Limit to 5 results
-    }
-
-    displayResults(results) {
-        const resultsContainer = document.getElementById('search-results');
-        if (!resultsContainer) return;
-
-        if (results.length === 0) {
-            resultsContainer.innerHTML = `
-                <div class="search-result-item text-muted">
-                    No results found
+    ];
+    
+    const results = searchData.filter(item => {
+        const searchText = (item.title + ' ' + item.content + ' ' + item.category).toLowerCase();
+        return searchText.includes(query.toLowerCase());
+    });
+    
+    if (results.length === 0) {
+        searchResults.innerHTML = `
+            <div class="alert alert-warning">
+                <h4>No results found for "${query}"</h4>
+                <p class="mb-0">Try searching with different keywords or browse the categories in the sidebar.</p>
+            </div>
+        `;
+    } else {
+        searchResults.innerHTML = `
+            <h3>Search Results for "${query}"</h3>
+            <p class="text-muted mb-4">Found ${results.length} result(s)</p>
+            ${results.map(item => `
+                <div class="search-result-item">
+                    <h5><a href="${item.url}">${highlightText(item.title, query)}</a></h5>
+                    <p class="text-muted mb-1">${item.category}</p>
+                    <p class="mb-0">${highlightText(item.content, query)}</p>
                 </div>
-            `;
-            return;
-        }
-
-        resultsContainer.innerHTML = results.map(doc => `
-            <a href="${doc.url}" class="search-result-item">
-                <div class="fw-bold">${this.highlightText(doc.title, doc.title)}</div>
-                <small class="text-muted">${doc.category} • ${this.highlightText(doc.content, doc.content.substring(0, 60))}...</small>
-            </a>
-        `).join('');
-    }
-
-    highlightText(query, text) {
-        const searchTerms = query.toLowerCase().split(' ');
-        let highlighted = text;
-        
-        searchTerms.forEach(term => {
-            if (term.length < 2) return;
-            const regex = new RegExp(`(${term})`, 'gi');
-            highlighted = highlighted.replace(regex, '<mark>$1</mark>');
-        });
-        
-        return highlighted;
-    }
-
-    showSearchResults() {
-        const resultsContainer = document.getElementById('search-results');
-        if (resultsContainer) {
-            resultsContainer.style.display = 'block';
-        }
-    }
-
-    hideSearchResults() {
-        const resultsContainer = document.getElementById('search-results');
-        if (resultsContainer) {
-            resultsContainer.style.display = 'none';
-        }
+            `).join('')}
+        `;
     }
 }
 
-// Initialize search when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new DocumentationSearch();
-});
+function highlightText(text, query) {
+    if (!query) return text;
+    
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, '<span class="search-highlight">$1</span>');
+}
