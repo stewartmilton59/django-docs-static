@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class-based and Function Views - Django Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-book me-2"></i>Django Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../quick-start.html">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../search.html">Search</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <div class="search-container">
+                        <form action="../../search.html" method="get" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="Search documentation...">
+                            <button type="submit" class="btn btn-outline-light ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light sidebar">
+                <div class="position-sticky pt-5">
+                    <div class="p-3">
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Documentation</h6>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">
+                                    <i class="fas fa-home me-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../quick-start.html">
+                                    <i class="fas fa-rocket me-2"></i>Quick Start
+                                </a>
+                            </li>
+                            
+                            <!-- Getting Started -->
+                            <li class="category-header">
+                                <i class="fas fa-play-circle me-2"></i>Getting Started
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/installation.html">
+                                    Installation Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/first-project.html">
+                                    Writing Your First Django App
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/tutorial.html">
+                                    Complete Tutorial
+                                </a>
+                            </li>
+
+                            <!-- Models & ORM -->
+                            <li class="category-header">
+                                <i class="fas fa-database me-2"></i>Models & ORM
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/models.html">
+                                    Models and Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/queries.html">
+                                    Making Queries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/migrations.html">
+                                    Database Migrations
+                                </a>
+                            </li>
+
+                            <!-- Views & Templates -->
+                            <li class="category-header">
+                                <i class="fas fa-code me-2"></i>Views & Templates
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active ps-4" href="views.html">
+                                    Class-based and Function Views
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="templates.html">
+                                    Template Language
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="forms.html">
+                                    Forms and Validation
+                                </a>
+                            </li>
+
+                            <!-- Deployment -->
+                            <li class="category-header">
+                                <i class="fas fa-server me-2"></i>Deployment
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/production.html">
+                                    Deployment Checklist
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/performance.html">
+                                    Performance Optimization
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/security.html">
+                                    Security Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
+                <div class="pt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="../../index.html">Views & Templates</a></li>
+                            <li class="breadcrumb-item active">Class-based and Function Views</li>
+                        </ol>
+                    </nav>
+
+                    <article class="doc-content">
+                        <header class="mb-4">
+                            <h1>Class-based and Function Views</h1>
+                            <div class="text-muted d-flex align-items-center gap-3">
+                                <span><i class="fas fa-clock me-1"></i> 25 min read</span>
+                                <span><i class="fas fa-calendar me-1"></i> Updated Jan 2024</span>
+                                <span class="badge bg-info">Views</span>
+                            </div>
+                        </header>
+
+                        <div class="alert alert-info">
+                            <strong><i class="fas fa-lightbulb me-2"></i>Pro Tip:</strong> Both function-based views (FBVs) and class-based views (CBVs) have their strengths. Choose based on your project's complexity and your team's preferences.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <section id="introduction">
+                                    <h2>Introduction</h2>
+                                    <p>Django provides two main ways to write views: function-based views (FBVs) and class-based views (CBVs). Both are equally valid and have their own advantages and use cases.</p>
+                                    
+                                    <div class="row text-center mb-4">
+                                        <div class="col-md-6">
+                                            <div class="card border-primary">
+                                                <div class="card-body">
+                                                    <i class="fas fa-function fa-3x text-primary mb-3"></i>
+                                                    <h4>Function-based Views</h4>
+                                                    <p class="text-muted">Simple, explicit, and straightforward</p>
+                                                    <ul class="list-unstyled text-start">
+                                                        <li><i class="fas fa-check text-success me-2"></i>Simple to understand</li>
+                                                        <li><i class="fas fa-check text-success me-2"></i>Explicit control flow</li>
+                                                        <li><i class="fas fa-check text-success me-2"></i>Easy to debug</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card border-success">
+                                                <div class="card-body">
+                                                    <i class="fas fa-object-group fa-3x text-success mb-3"></i>
+                                                    <h4>Class-based Views</h4>
+                                                    <p class="text-muted">Reusable, extensible, and powerful</p>
+                                                    <ul class="list-unstyled text-start">
+                                                        <li><i class="fas fa-check text-success me-2"></i>Code reuse</li>
+                                                        <li><i class="fas fa-check text-success me-2"></i>Built-in functionality</li>
+                                                        <li><i class="fas fa-check text-success me-2"></i>Better organization</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="function-based-views">
+                                    <h2>Function-based Views (FBVs)</h2>
+                                    <p>Function-based views are the traditional way of writing views in Django. They are simple Python functions that take a request and return a response.</p>
+
+                                    <h3>Basic Function View</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.http import HttpResponse
+from django.shortcuts import render
+
+def hello_world(request):
+    return HttpResponse("Hello, World!")
+
+def current_time(request):
+    import datetime
+    now = datetime.datetime.now()
+    return HttpResponse(f"Current time: {now}")</code></pre>
+                                    </div>
+
+                                    <h3>Function View with Template</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.shortcuts import render
+from .models import Article
+
+def article_list(request):
+    articles = Article.objects.filter(published=True)
+    return render(request, 'articles/list.html', {'articles': articles})
+
+def article_detail(request, article_id):
+    try:
+        article = Article.objects.get(id=article_id, published=True)
+        return render(request, 'articles/detail.html', {'article': article})
+    except Article.DoesNotExist:
+        return render(request, 'articles/404.html', status=404)</code></pre>
+                                    </div>
+
+                                    <h3>Function View with Forms</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ContactForm
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process the form data
+            form.save()
+            messages.success(request, 'Your message has been sent!')
+            return redirect('contact_success')
+    else:
+        form = ContactForm()
+    
+    return render(request, 'contact/form.html', {'form': form})</code></pre>
+                                    </div>
+
+                                    <h3>Decorators with Function Views</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.contrib.auth.decorators import login_required, permission_required
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.cache import cache_page
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def protected_view(request):
+    return render(request, 'protected.html')
+
+@permission_required('app.view_sensitive_data')
+@cache_page(60 * 15)  # Cache for 15 minutes
+def sensitive_data_view(request):
+    # View sensitive data
+    return render(request, 'sensitive_data.html')</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="class-based-views">
+                                    <h2>Class-based Views (CBVs)</h2>
+                                    <p>Class-based views provide a way to structure your views using classes instead of functions. They promote code reuse and provide built-in functionality for common patterns.</p>
+
+                                    <h3>Basic Class-based View</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views import View
+from django.http import HttpResponse
+
+class HelloWorldView(View):
+    def get(self, request):
+        return HttpResponse("Hello, World!")
+
+class CurrentTimeView(View):
+    def get(self, request):
+        import datetime
+        now = datetime.datetime.now()
+        return HttpResponse(f"Current time: {now}")</code></pre>
+                                    </div>
+
+                                    <h3>TemplateView</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import TemplateView
+
+class AboutView(TemplateView):
+    template_name = 'about.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['company_name'] = "My Company"
+        context['year'] = 2024
+        return context
+
+class HomeView(TemplateView):
+    template_name = 'home.html'</code></pre>
+                                    </div>
+
+                                    <h3>ListView</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import ListView
+from .models import Article, Category
+
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'articles/list.html'
+    context_object_name = 'articles'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        return Article.objects.filter(published=True).select_related('author')
+
+class CategoryArticleListView(ListView):
+    template_name = 'articles/category_list.html'
+    context_object_name = 'articles'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        return Article.objects.filter(
+            category=self.category, 
+            published=True
+        )</code></pre>
+                                    </div>
+
+                                    <h3>DetailView</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import DetailView
+from django.shortcuts import get_object_or_404
+from .models import Article
+
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'articles/detail.html'
+    context_object_name = 'article'
+    
+    def get_queryset(self):
+        return Article.objects.filter(published=True)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['related_articles'] = Article.objects.filter(
+            category=self.object.category,
+            published=True
+        ).exclude(id=self.object.id)[:5]
+        return context</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="form-handling-views">
+                                    <h2>Form Handling Views</h2>
+                                    <p>Django provides specialized CBVs for handling forms and creating/updating objects.</p>
+
+                                    <h3>FormView</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import FormView
+from django.urls import reverse_lazy
+from django.contrib import messages
+from .forms import ContactForm
+
+class ContactView(FormView):
+    template_name = 'contact/form.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('contact_success')
+    
+    def form_valid(self, form):
+        # Process the form data
+        form.save()
+        messages.success(self.request, 'Your message has been sent!')
+        return super().form_valid(form)</code></pre>
+                                    </div>
+
+                                    <h3>CreateView</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Article
+from .forms import ArticleForm
+
+class ArticleCreateView(LoginRequiredMixin, CreateView):
+    model = Article
+    form_class = ArticleForm
+    template_name = 'articles/create.html'
+    success_url = reverse_lazy('article_list')
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)</code></pre>
+                                    </div>
+
+                                    <h3>UpdateView</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .models import Article
+from .forms import ArticleForm
+
+class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Article
+    form_class = ArticleForm
+    template_name = 'articles/update.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
+    
+    def test_func(self):
+        article = self.get_object()
+        return self.request.user == article.author</code></pre>
+                                    </div>
+
+                                    <h3>DeleteView</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from .models import Article
+
+class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+    model = Article
+    template_name = 'articles/delete.html'
+    success_url = reverse_lazy('article_list')
+    success_message = "Article was deleted successfully"
+    
+    def test_func(self):
+        article = self.get_object()
+        return self.request.user == article.author</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="authentication-mixins">
+                                    <h2>Authentication and Permission Mixins</h2>
+                                    <p>Class-based views work well with mixins for authentication and permissions.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
+from django.views.generic import ListView, DetailView
+from .models import Article
+
+class StaffRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
+
+class SuperuserRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
+
+# Usage examples
+class DraftArticleListView(LoginRequiredMixin, StaffRequiredMixin, ListView):
+    model = Article
+    template_name = 'articles/draft_list.html'
+    
+    def get_queryset(self):
+        return Article.objects.filter(published=False)
+
+class AdminArticleListView(LoginRequiredMixin, SuperuserRequiredMixin, ListView):
+    model = Article
+    template_name = 'articles/admin_list.html'
+
+class SensitiveDataView(PermissionRequiredMixin, DetailView):
+    model = SensitiveData
+    template_name = 'sensitive_data.html'
+    permission_required = 'app.view_sensitive_data'</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="comparison">
+                                    <h2>FBV vs CBV Comparison</h2>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Aspect</th>
+                                                    <th>Function-based Views</th>
+                                                    <th>Class-based Views</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Simplicity</strong></td>
+                                                    <td>✅ Very simple and straightforward</td>
+                                                    <td>❌ More complex, requires understanding of classes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Code Reuse</strong></td>
+                                                    <td>❌ Limited reuse, mostly through decorators</td>
+                                                    <td>✅ Excellent through inheritance and mixins</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Built-in Patterns</strong></td>
+                                                    <td>❌ Manual implementation needed</td>
+                                                    <td>✅ Built-in for common patterns (CRUD, lists, details)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Organization</strong></td>
+                                                    <td>❌ Can become messy with complex views</td>
+                                                    <td>✅ Better organization with method separation</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Learning Curve</strong></td>
+                                                    <td>✅ Easy to learn</td>
+                                                    <td>❌ Steeper learning curve</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Flexibility</strong></td>
+                                                    <td>✅ Very flexible, complete control</td>
+                                                    <td>✅ Flexible through method overriding</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>URL Configuration</strong></td>
+                                                    <td>✅ Direct function reference</td>
+                                                    <td>❌ Requires .as_view() method</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+
+                                <section id="url-configuration">
+                                    <h2>URL Configuration</h2>
+                                    <p>Configuring URLs for both function-based and class-based views.</p>
+
+                                    <h3>Function-based View URLs</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('hello/', views.hello_world, name='hello'),
+    path('articles/', views.article_list, name='article_list'),
+    path('articles/&lt;int:article_id&gt;/', views.article_detail, name='article_detail'),
+    path('contact/', views.contact_view, name='contact'),
+]</code></pre>
+                                    </div>
+
+                                    <h3>Class-based View URLs</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># urls.py
+from django.urls import path
+from .views import (
+    HelloWorldView, 
+    ArticleListView, 
+    ArticleDetailView,
+    ArticleCreateView,
+    ArticleUpdateView,
+    ArticleDeleteView,
+    ContactView
+)
+
+urlpatterns = [
+    path('hello/', HelloWorldView.as_view(), name='hello'),
+    path('articles/', ArticleListView.as_view(), name='article_list'),
+    path('articles/&lt;int:pk&gt;/', ArticleDetailView.as_view(), name='article_detail'),
+    path('articles/create/', ArticleCreateView.as_view(), name='article_create'),
+    path('articles/&lt;int:pk&gt;/update/', ArticleUpdateView.as_view(), name='article_update'),
+    path('articles/&lt;int:pk&gt;/delete/', ArticleDeleteView.as_view(), name='article_delete'),
+    path('contact/', ContactView.as_view(), name='contact'),
+]</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="best-practices">
+                                    <h2>Best Practices</h2>
+                                    <p>Follow these best practices when working with Django views.</p>
+
+                                    <h3>When to Use FBVs</h3>
+                                    <ul>
+                                        <li><strong>Simple views</strong> - When the view logic is straightforward</li>
+                                        <li><strong>One-off views</strong> - Views that won't be reused</li>
+                                        <li><strong>Team preference</strong> - When your team is more comfortable with functions</li>
+                                        <li><strong>Complex conditional logic</strong> - When you need complex if-else structures</li>
+                                    </ul>
+
+                                    <h3>When to Use CBVs</h3>
+                                    <ul>
+                                        <li><strong>CRUD operations</strong> - Create, Read, Update, Delete patterns</li>
+                                        <li><strong>Reusable views</strong> - When you need similar functionality across multiple views</li>
+                                        <li><strong>Built-in patterns</strong> - When you can use Django's generic class-based views</li>
+                                        <li><strong>Complex applications</strong> - Better organization for complex view logic</li>
+                                    </ul>
+
+                                    <h3>General Guidelines</h3>
+                                    <div class="alert-note">
+                                        <strong>Consistency:</strong> Be consistent within your project. Don't mix FBVs and CBVs arbitrarily.
+                                    </div>
+                                    <div class="alert-note">
+                                        <strong>Keep views thin:</strong> Move business logic to models, forms, or separate services.
+                                    </div>
+                                    <div class="alert-note">
+                                        <strong>Use appropriate generic views:</strong> Leverage Django's built-in CBVs when they fit your needs.
+                                    </div>
+                                </section>
+
+                                <section id="advanced-cbv">
+                                    <h2>Advanced Class-based Views</h2>
+                                    <p>Advanced patterns and customizations for class-based views.</p>
+
+                                    <h3>Multiple Inheritance with Mixins</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># mixins.py
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+
+class OwnerRequiredMixin:
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(owner=self.request.user)
+
+class TimestampMixin:
+    def form_valid(self, form):
+        if form.instance.pk is None:  # Creating new object
+            form.instance.created_by = self.request.user
+        form.instance.updated_by = self.request.user
+        return super().form_valid(form)
+
+# Usage
+class ArticleCreateView(LoginRequiredMixin, SuccessMessageMixin, TimestampMixin, CreateView):
+    model = Article
+    form_class = ArticleForm
+    template_name = 'articles/create.html'
+    success_message = "Article created successfully"</code></pre>
+                                    </div>
+
+                                    <h3>Custom Dispatch Method</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import View
+from django.utils import timezone
+
+class TimeRestrictedView(View):
+    start_time = 9  # 9 AM
+    end_time = 17   # 5 PM
+    
+    def dispatch(self, request, *args, **kwargs):
+        current_hour = timezone.now().hour
+        
+        if not (self.start_time <= current_hour < self.end_time):
+            return self.http_method_not_allowed(request)
+        
+        return super().dispatch(request, *args, **kwargs)</code></pre>
+                                    </div>
+
+                                    <h3>Dynamic Template Names</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.generic import ListView
+from .models import Article
+
+class ArticleListView(ListView):
+    model = Article
+    
+    def get_template_names(self):
+        if self.request.user.is_staff:
+            return ['articles/staff_list.html']
+        return ['articles/list.html']</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="hybrid-approach">
+                                    <h2>Hybrid Approach</h2>
+                                    <p>You can also use a hybrid approach, converting between FBVs and CBVs as needed.</p>
+
+                                    <h3>Converting FBV to CBV</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Function-based view
+def article_list(request):
+    articles = Article.objects.filter(published=True)
+    return render(request, 'articles/list.html', {'articles': articles})
+
+# Converted to class-based view
+class ArticleListView(View):
+    def get(self, request):
+        articles = Article.objects.filter(published=True)
+        return render(request, 'articles/list.html', {'articles': articles})</code></pre>
+                                    </div>
+
+                                    <h3>Using @method_decorator</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.generic import ListView
+from .models import Article
+
+@method_decorator(cache_page(60 * 15), name='dispatch')
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'articles/list.html'
+
+# Multiple decorators
+@method_decorator(cache_page(60 * 15), name='dispatch')
+@method_decorator(login_required, name='dispatch')
+class ProtectedArticleListView(ListView):
+    model = Article
+    template_name = 'articles/protected_list.html'</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="common-patterns">
+                                    <h2>Common Patterns</h2>
+                                    <p>Common view patterns and their implementations in both FBV and CBV styles.</p>
+
+                                    <h3>Search View</h3>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Function-based</h5>
+                                            <div class="code-block">
+                                                <pre><code class="language-python">def search_articles(request):
+    query = request.GET.get('q', '')
+    articles = Article.objects.all()
+    
+    if query:
+        articles = articles.filter(
+            Q(title__icontains=query) | 
+            Q(content__icontains=query)
+        )
+    
+    return render(request, 'articles/search.html', {
+        'articles': articles,
+        'query': query
+    })</code></pre>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Class-based</h5>
+                                            <div class="code-block">
+                                                <pre><code class="language-python">class ArticleSearchView(ListView):
+    model = Article
+    template_name = 'articles/search.html'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(
+                Q(title__icontains=query) | 
+                Q(content__icontains=query)
+            )
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q', '')
+        return context</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3>API-style JSON Response</h3>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Function-based</h5>
+                                            <div class="code-block">
+                                                <pre><code class="language-python">from django.http import JsonResponse
+
+def article_api(request, article_id):
+    try:
+        article = Article.objects.get(id=article_id)
+        data = {
+            'id': article.id,
+            'title': article.title,
+            'content': article.content,
+            'author': article.author.username,
+        }
+        return JsonResponse(data)
+    except Article.DoesNotExist:
+        return JsonResponse({'error': 'Not found'}, status=404)</code></pre>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Class-based</h5>
+                                            <div class="code-block">
+                                                <pre><code class="language-python">from django.http import JsonResponse
+from django.views import View
+
+class ArticleAPIView(View):
+    def get(self, request, article_id):
+        try:
+            article = Article.objects.get(id=article_id)
+            data = {
+                'id': article.id,
+                'title': article.title,
+                'content': article.content,
+                'author': article.author.username,
+            }
+            return JsonResponse(data)
+        except Article.DoesNotExist:
+            return JsonResponse({'error': 'Not found'}, status=404)</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="testing-views">
+                                    <h2>Testing Views</h2>
+                                    <p>Testing both function-based and class-based views.</p>
+
+                                    <h3>Testing Function-based Views</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># tests.py
+from django.test import TestCase
+from django.urls import reverse
+from django.contrib.auth.models import User
+from .models import Article
+
+class FunctionViewTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='testuser', 
+            password='testpass123'
+        )
+        self.article = Article.objects.create(
+            title='Test Article',
+            content='Test content',
+            author=self.user,
+            published=True
+        )
+    
+    def test_article_list_view(self):
+        response = self.client.get(reverse('article_list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Test Article')
+        self.assertTemplateUsed(response, 'articles/list.html')
+    
+    def test_article_detail_view(self):
+        response = self.client.get(reverse('article_detail', args=[self.article.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Test Article')</code></pre>
+                                    </div>
+
+                                    <h3>Testing Class-based Views</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># tests.py
+from django.test import TestCase
+from django.urls import reverse
+from django.contrib.auth.models import User
+from .models import Article
+from .views import ArticleListView
+
+class ClassViewTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='testuser', 
+            password='testpass123'
+        )
+        self.article = Article.objects.create(
+            title='Test Article',
+            content='Test content',
+            author=self.user,
+            published=True
+        )
+    
+    def test_article_list_view(self):
+        response = self.client.get(reverse('article_list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIsInstance(response.context['view'], ArticleListView)
+        self.assertQuerysetEqual(
+            response.context['articles'],
+            ['&lt;Article: Test Article&gt;']
+        )</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="next-steps">
+                                    <h2>Next Steps</h2>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-file-code fa-2x text-info mb-3"></i>
+                                                    <h5 class="card-title">Template Language</h5>
+                                                    <p class="card-text">Learn Django's powerful template system for rendering views.</p>
+                                                    <a href="templates.html" class="btn btn-info">Templates Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-window-restore fa-2x text-success mb-3"></i>
+                                                    <h5 class="card-title">Forms and Validation</h5>
+                                                    <p class="card-text">Learn how to handle forms and user input validation.</p>
+                                                    <a href="forms.html" class="btn btn-success">Forms Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-database fa-2x text-primary mb-3"></i>
+                                                    <h5 class="card-title">Database Models</h5>
+                                                    <p class="card-text">Understand Django models and database relationships.</p>
+                                                    <a href="../models-orm/models.html" class="btn btn-primary">Models Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="sticky-top" style="top: 6rem;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">On This Page</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <nav class="nav flex-column">
+                                                <a class="nav-link ps-0" href="#introduction">Introduction</a>
+                                                <a class="nav-link ps-0" href="#function-based-views">Function-based Views</a>
+                                                <a class="nav-link ps-0" href="#class-based-views">Class-based Views</a>
+                                                <a class="nav-link ps-0" href="#form-handling-views">Form Handling Views</a>
+                                                <a class="nav-link ps-0" href="#authentication-mixins">Authentication Mixins</a>
+                                                <a class="nav-link ps-0" href="#comparison">FBV vs CBV Comparison</a>
+                                                <a class="nav-link ps-0" href="#url-configuration">URL Configuration</a>
+                                                <a class="nav-link ps-0" href="#best-practices">Best Practices</a>
+                                                <a class="nav-link ps-0" href="#advanced-cbv">Advanced CBV</a>
+                                                <a class="nav-link ps-0" href="#hybrid-approach">Hybrid Approach</a>
+                                                <a class="nav-link ps-0" href="#common-patterns">Common Patterns</a>
+                                                <a class="nav-link ps-0" href="#testing-views">Testing Views</a>
+                                                <a class="nav-link ps-0" href="#next-steps">Next Steps</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Quick Reference</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-primary p-2 mb-2">
+                                                <small><strong>FBV:</strong> Simple functions</small>
+                                            </div>
+                                            <div class="alert alert-success p-2 mb-2">
+                                                <small><strong>CBV:</strong> Reusable classes</small>
+                                            </div>
+                                            <div class="alert alert-info p-2">
+                                                <small><strong>Mixins:</strong> Add functionality to CBVs</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Common CBVs</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <code class="small d-block mb-1">ListView</code>
+                                            <code class="small d-block mb-1">DetailView</code>
+                                            <code class="small d-block mb-1">CreateView</code>
+                                            <code class="small d-block mb-1">UpdateView</code>
+                                            <code class="small d-block">DeleteView</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Related Guides</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="list-group list-group-flush">
+                                                <a href="templates.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-file-code me-2 text-info"></i>
+                                                    Template Language
+                                                </a>
+                                                <a href="forms.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-window-restore me-2 text-success"></i>
+                                                    Forms and Validation
+                                                </a>
+                                                <a href="../models-orm/models.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-database me-2 text-primary"></i>
+                                                    Models and Fields
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Django Documentation</h5>
+                    <p class="text-muted">Complete guide to building web applications with Django.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html" class="text-muted">Home</a></li>
+                        <li><a href="../../quick-start.html" class="text-muted">Quick Start</a></li>
+                        <li><a href="../getting-started/tutorial.html" class="text-muted">Tutorial</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://djangoproject.com" class="text-muted" target="_blank">Official Django Website</a></li>
+                        <li><a href="https://docs.djangoproject.com" class="text-muted" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/django" class="text-muted" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Django Documentation. This is a static documentation site for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
