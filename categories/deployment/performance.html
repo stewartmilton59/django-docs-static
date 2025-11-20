@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Optimization - Django Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-book me-2"></i>Django Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../quick-start.html">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../search.html">Search</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <div class="search-container">
+                        <form action="../../search.html" method="get" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="Search documentation...">
+                            <button type="submit" class="btn btn-outline-light ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light sidebar">
+                <div class="position-sticky pt-5">
+                    <div class="p-3">
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Documentation</h6>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">
+                                    <i class="fas fa-home me-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../quick-start.html">
+                                    <i class="fas fa-rocket me-2"></i>Quick Start
+                                </a>
+                            </li>
+                            
+                            <!-- Getting Started -->
+                            <li class="category-header">
+                                <i class="fas fa-play-circle me-2"></i>Getting Started
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/installation.html">
+                                    Installation Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/first-project.html">
+                                    Writing Your First Django App
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/tutorial.html">
+                                    Complete Tutorial
+                                </a>
+                            </li>
+
+                            <!-- Models & ORM -->
+                            <li class="category-header">
+                                <i class="fas fa-database me-2"></i>Models & ORM
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/models.html">
+                                    Models and Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/queries.html">
+                                    Making Queries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/migrations.html">
+                                    Database Migrations
+                                </a>
+                            </li>
+
+                            <!-- Views & Templates -->
+                            <li class="category-header">
+                                <i class="fas fa-code me-2"></i>Views & Templates
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/views.html">
+                                    Class-based and Function Views
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/templates.html">
+                                    Template Language
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/forms.html">
+                                    Forms and Validation
+                                </a>
+                            </li>
+
+                            <!-- Deployment -->
+                            <li class="category-header">
+                                <i class="fas fa-server me-2"></i>Deployment
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="production.html">
+                                    Deployment Checklist
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active ps-4" href="performance.html">
+                                    Performance Optimization
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="security.html">
+                                    Security Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
+                <div class="pt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="../../index.html">Deployment</a></li>
+                            <li class="breadcrumb-item active">Performance Optimization</li>
+                        </ol>
+                    </nav>
+
+                    <article class="doc-content">
+                        <header class="mb-4">
+                            <h1>Performance Optimization</h1>
+                            <div class="text-muted d-flex align-items-center gap-3">
+                                <span><i class="fas fa-clock me-1"></i> 25 min read</span>
+                                <span><i class="fas fa-calendar me-1"></i> Updated Jan 2024</span>
+                                <span class="badge bg-success">Performance</span>
+                            </div>
+                        </header>
+
+                        <div class="alert alert-info">
+                            <strong><i class="fas fa-lightbulb me-2"></i>Pro Tip:</strong> Always measure before optimizing. Use Django Debug Toolbar and monitoring tools to identify actual bottlenecks.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <section id="introduction">
+                                    <h2>Introduction</h2>
+                                    <p>Performance optimization in Django involves improving response times, reducing server load, and enhancing user experience. This guide covers comprehensive optimization strategies from database queries to frontend delivery.</p>
+                                    
+                                    <div class="row text-center mb-4">
+                                        <div class="col-md-3">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-database fa-2x text-primary mb-2"></i>
+                                                    <h5>Database</h5>
+                                                    <p class="text-muted">Query optimization</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-bolt fa-2x text-success mb-2"></i>
+                                                    <h5>Caching</h5>
+                                                    <p class="text-muted">Reduce computation</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-file-code fa-2x text-info mb-2"></i>
+                                                    <h5>Templates</h5>
+                                                    <p class="text-muted">Rendering optimization</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-rocket fa-2x text-warning mb-2"></i>
+                                                    <h5>Frontend</h5>
+                                                    <p class="text-muted">Asset delivery</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="performance-monitoring">
+                                    <h2>Performance Monitoring</h2>
+                                    <p>Before optimizing, identify bottlenecks with proper monitoring tools:</p>
+
+                                    <h3>Django Debug Toolbar</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+INSTALLED_APPS = [
+    # ...
+    'debug_toolbar',
+]
+
+MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # ...
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+# For Docker/containers
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS += [ip[:-1] + "1" for ip in ips]</code></pre>
+                                    </div>
+
+                                    <h3>Django Silk Profiling</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+INSTALLED_APPS = [
+    # ...
+    'silk',
+]
+
+MIDDLEWARE = [
+    'silk.middleware.SilkyMiddleware',
+    # ...
+]
+
+SILKY_PYTHON_PROFILER = True
+SILKY_PYTHON_PROFILER_BINARY = True
+SILKY_META = True</code></pre>
+                                    </div>
+
+                                    <h3>Logging Slow Queries</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'slow_queries.log',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="database-optimization">
+                                    <h2>Database Optimization</h2>
+                                    <p>Database queries are often the biggest performance bottleneck:</p>
+
+                                    <h3>select_related() and prefetch_related()</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># INEFFICIENT: N+1 query problem
+books = Book.objects.all()
+for book in books:
+    print(book.author.name)  # Database query for each book
+
+# EFFICIENT: Using select_related (ForeignKey, OneToOne)
+books = Book.objects.select_related('author').all()
+for book in books:
+    print(book.author.name)  # No additional queries
+
+# EFFICIENT: Using prefetch_related (ManyToMany, Reverse FK)
+books = Book.objects.prefetch_related('categories').all()
+for book in books:
+    print([cat.name for cat in book.categories.all()])</code></pre>
+                                    </div>
+
+                                    <h3>only() and defer()</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Load only specific fields
+users = User.objects.only('username', 'email')
+
+# Defer large fields
+articles = Article.objects.defer('content')
+
+# Combined with select_related
+books = Book.objects.select_related('author').only(
+    'title', 'author__name'
+)</code></pre>
+                                    </div>
+
+                                    <h3>Database Indexing</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># models.py
+from django.db import models
+
+class Article(models.Model):
+    title = models.CharField(max_length=200, db_index=True)
+    content = models.TextField()
+    published_date = models.DateTimeField(db_index=True)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['published_date', 'author']),
+            models.Index(fields=['title'], name='title_idx'),
+        ]
+
+# For complex queries
+class Article(models.Model):
+    # ...
+    
+    class Meta:
+        indexes = [
+            models.Index(
+                fields=['published_date'],
+                name='pub_date_desc_idx',
+                order=['-published_date']
+            ),
+        ]</code></pre>
+                                    </div>
+
+                                    <h3>QuerySet Optimization Patterns</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Use exists() for existence checks
+if Book.objects.filter(author=author).exists():
+    # Better than count() > 0 or bool(queryset)
+
+# Use count() for counting
+total = Book.objects.count()  # Better than len(Book.objects.all())
+
+# Use iterator() for large querysets
+for book in Book.objects.iterator(chunk_size=2000):
+    process_book(book)
+
+# Use bulk operations
+Book.objects.bulk_create(books)
+Book.objects.bulk_update(books, ['price'])</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="caching-strategies">
+                                    <h2>Caching Strategies</h2>
+                                    <p>Implement caching at multiple levels for optimal performance:</p>
+
+                                    <h3>Template Fragment Caching</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-html">{# templates/articles/list.html #}
+{% load cache %}
+
+{# Cache for 15 minutes #}
+{% cache 900 article_list request.user.id %}
+    {% for article in articles %}
+        <div class="article">
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.summary }}</p>
+        </div>
+    {% endfor %}
+{% endcache %}
+
+{# Cache with version #}
+{% cache 3600 sidebar request.user.username version %}
+    {# sidebar content #}
+{% endcache %}</code></pre>
+                                    </div>
+
+                                    <h3>View Caching</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.views.decorators.cache import cache_page
+
+@cache_page(60 * 15)  # 15 minutes
+def article_list(request):
+    articles = Article.objects.published()
+    return render(request, 'articles/list.html', {'articles': articles})
+
+# Class-based view caching
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
+class ArticleListView(ListView):
+    model = Article
+    
+    @method_decorator(cache_page(60 * 15))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)</code></pre>
+                                    </div>
+
+                                    <h3>Low-level Caching API</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+from django.core.cache import cache
+
+def expensive_view(request):
+    cache_key = f'expensive_data_{request.user.id}'
+    data = cache.get(cache_key)
+    
+    if data is None:
+        # Expensive computation
+        data = expensive_computation()
+        cache.set(cache_key, data, 3600)  # Cache for 1 hour
+    
+    return render(request, 'template.html', {'data': data})
+
+# Cache versioning
+def update_data(request):
+    data = compute_new_data()
+    cache.set('my_data', data, 3600)
+    cache.incr('my_data_version')  # Invalidate old cached versions</code></pre>
+                                    </div>
+
+                                    <h3>Cache Backends Configuration</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Redis cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
+        }
+    }
+}
+
+# settings.py - Memcached
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="template-optimization">
+                                    <h2>Template Optimization</h2>
+                                    <p>Optimize template rendering and reduce frontend bottlenecks:</p>
+
+                                    <h3>Template Fragment Caching</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-html">{% load cache %}
+
+{# Cache expensive template fragments #}
+{% cache 300 header_nav %}
+    <nav>{# navigation code #}</nav>
+{% endcache %}
+
+{# Cache per user #}
+{% cache 300 user_profile request.user.id %}
+    <div class="profile">
+        {# profile content #}
+    </div>
+{% endcache %}</code></pre>
+                                    </div>
+
+                                    <h3>Template Tag Optimization</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Custom template tags with caching
+from django import template
+from django.core.cache import cache
+
+register = template.Library()
+
+@register.simple_tag
+def get_popular_articles():
+    cache_key = 'popular_articles'
+    articles = cache.get(cache_key)
+    
+    if not articles:
+        articles = Article.objects.popular()[:5]
+        cache.set(cache_key, articles, 3600)
+    
+    return articles</code></pre>
+                                    </div>
+
+                                    <h3>Minimize Template Complexity</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-html">{# Avoid complex logic in templates #}
+
+{# GOOD: Logic in view #}
+&lt;div class="status status-{{ object.get_status_display|lower }}"&gt;
+    {{ object.get_status_display }}
+&lt;/div&gt;
+
+{# BAD: Complex logic in template #}
+{% if object.status == 1 %}
+    &lt;div class="status status-published"&gt;Published&lt;/div&gt;
+{% elif object.status == 2 %}
+    &lt;div class="status status-draft"&gt;Draft&lt;/div&gt;
+{% endif %}</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="static-files-optimization">
+                                    <h2>Static Files Optimization</h2>
+                                    <p>Optimize delivery of CSS, JavaScript, and images:</p>
+
+                                    <h3>Django Compressor</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+INSTALLED_APPS = [
+    # ...
+    'compressor',
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
+
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-html">{% load compress %}
+
+{% compress css %}
+&lt;link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}"&gt;
+&lt;link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}"&gt;
+{% endcompress %}
+
+{% compress js %}
+&lt;script src="{% static 'js/jquery.js' %}"&gt;&lt;/script&gt;
+&lt;script src="{% static 'js/app.js' %}"&gt;&lt;/script&gt;
+{% endcompress %}</code></pre>
+                                    </div>
+
+                                    <h3>WhiteNoise for Static Files</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+MIDDLEWARE = [
+    # ...
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# For better compression
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_ALLOW_ALL_ORIGINS = True</code></pre>
+                                    </div>
+
+                                    <h3>CDN Configuration</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+AWS_ACCESS_KEY_ID = 'your-access-key'
+AWS_SECRET_ACCESS_KEY = 'your-secret-key'
+AWS_STORAGE_BUCKET_NAME = 'your-bucket-name'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+# Static files
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+
+# Media files
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="database-configuration">
+                                    <h2>Database Configuration</h2>
+                                    <p>Optimize database settings for better performance:</p>
+
+                                    <h3>Connection Pooling</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - PostgreSQL with connection pooling
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydatabase',
+        'USER': 'mydatabaseuser',
+        'PASSWORD': 'mypassword',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'CONN_MAX_AGE': 600,  # 10 minutes
+        'OPTIONS': {
+            'connect_timeout': 10,
+        }
+    }
+}</code></pre>
+                                    </div>
+
+                                    <h3>Read Replicas</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'primary_db',
+        # ... other settings
+    },
+    'replica1': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'replica_db',
+        # ... other settings
+    }
+}
+
+DATABASE_ROUTERS = ['path.to.PrimaryReplicaRouter']</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># routers.py
+class PrimaryReplicaRouter:
+    def db_for_read(self, model, **hints):
+        return 'replica1'
+
+    def db_for_write(self, model, **hints):
+        return 'default'
+
+    def allow_relation(self, obj1, obj2, **hints):
+        return True
+
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
+        return db == 'default'</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="middleware-optimization">
+                                    <h2>Middleware Optimization</h2>
+                                    <p>Optimize middleware stack and reduce overhead:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Optimized middleware
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Early for static files
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Remove unused middleware
+]</code></pre>
+                                    </div>
+
+                                    <h3>Custom Caching Middleware</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># middleware.py
+from django.core.cache import cache
+from django.utils.cache import get_cache_key
+
+class SmartCacheMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+    
+    def __call__(self, request):
+        # Skip caching for authenticated users or POST requests
+        if request.user.is_authenticated or request.method != 'GET':
+            return self.get_response(request)
+        
+        cache_key = get_cache_key(request)
+        if cache_key is None:
+            cache_key = self.generate_key(request)
+        
+        response = cache.get(cache_key)
+        if response is None:
+            response = self.get_response(request)
+            if response.status_code == 200:
+                cache.set(cache_key, response, 300)  # 5 minutes
+        
+        return response
+    
+    def generate_key(self, request):
+        return f"page_cache:{request.get_full_path()}"</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="async-optimization">
+                                    <h2>Async and Background Tasks</h2>
+                                    <p>Use async views and background tasks for long-running operations:</p>
+
+                                    <h3>Async Views</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py
+import asyncio
+from django.http import JsonResponse
+from asgiref.sync import sync_to_async
+
+async def async_api_view(request):
+    # Perform multiple async operations
+    user_data, notifications, recommendations = await asyncio.gather(
+        sync_to_async(get_user_data)(request.user),
+        sync_to_async(get_notifications)(request.user),
+        sync_to_async(get_recommendations)(request.user)
+    )
+    
+    return JsonResponse({
+        'user': user_data,
+        'notifications': notifications,
+        'recommendations': recommendations
+    })
+
+# For database operations
+from django.db import connection
+
+async def async_db_view(request):
+    await sync_to_async(connection.ensure_connection)()
+    # Perform async operations</code></pre>
+                                    </div>
+
+                                    <h3>Celery for Background Tasks</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># tasks.py
+from celery import shared_task
+from django.core.mail import send_mail
+
+@shared_task
+def send_welcome_email(user_id):
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    
+    try:
+        user = User.objects.get(id=user_id)
+        send_mail(
+            'Welcome!',
+            'Thank you for registering.',
+            'noreply@example.com',
+            [user.email],
+            fail_silently=False,
+        )
+    except User.DoesNotExist:
+        pass
+
+# In views
+def register_view(request):
+    if request.method == 'POST':
+        # Create user
+        user = User.objects.create_user(...)
+        # Send email asynchronously
+        send_welcome_email.delay(user.id)
+        return redirect('success')</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="frontend-optimization">
+                                    <h2>Frontend Optimization</h2>
+                                    <p>Optimize frontend delivery and user experience:</p>
+
+                                    <h3>Lazy Loading Images</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-html">&lt;img src="placeholder.jpg" 
+     data-src="real-image.jpg" 
+     class="lazyload" 
+     alt="Description"&gt;
+
+&lt;script&gt;
+// Simple lazy loading
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyImages = [].slice.call(document.querySelectorAll("img.lazyload"));
+    
+    if ("IntersectionObserver" in window) {
+        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let lazyImage = entry.target;
+                    lazyImage.src = lazyImage.dataset.src;
+                    lazyImage.classList.remove("lazyload");
+                    lazyImageObserver.unobserve(lazyImage);
+                }
+            });
+        });
+        
+        lazyImages.forEach(function(lazyImage) {
+            lazyImageObserver.observe(lazyImage);
+        });
+    }
+});
+&lt;/script&gt;</code></pre>
+                                    </div>
+
+                                    <h3>Django and JavaScript Optimization</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># views.py - API endpoints for dynamic content
+from django.http import JsonResponse
+
+def article_comments_api(request, article_id):
+    comments = Comment.objects.filter(article_id=article_id).values(
+        'id', 'author__username', 'content', 'created_at'
+    )
+    return JsonResponse(list(comments), safe=False)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="performance-checklist">
+                                    <h2>Performance Optimization Checklist</h2>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Optimization</th>
+                                                    <th>Priority</th>
+                                                    <th>Impact</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Database indexing</td>
+                                                    <td>Critical</td>
+                                                    <td>High</td>
+                                                    <td><span class="badge bg-warning">Required</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>select_related/prefetch_related</td>
+                                                    <td>Critical</td>
+                                                    <td>High</td>
+                                                    <td><span class="badge bg-warning">Required</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>QuerySet optimization</td>
+                                                    <td>High</td>
+                                                    <td>High</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Template caching</td>
+                                                    <td>High</td>
+                                                    <td>Medium</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>View caching</td>
+                                                    <td>Medium</td>
+                                                    <td>High</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Static files optimization</td>
+                                                    <td>Medium</td>
+                                                    <td>Medium</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Database connection pooling</td>
+                                                    <td>Medium</td>
+                                                    <td>Medium</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Background tasks</td>
+                                                    <td>Medium</td>
+                                                    <td>Medium</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CDN implementation</td>
+                                                    <td>Low</td>
+                                                    <td>High</td>
+                                                    <td><span class="badge bg-secondary">Optional</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Read replicas</td>
+                                                    <td>Low</td>
+                                                    <td>High</td>
+                                                    <td><span class="badge bg-secondary">Optional</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Async views</td>
+                                                    <td>Low</td>
+                                                    <td>Medium</td>
+                                                    <td><span class="badge bg-secondary">Optional</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+
+                                <section id="monitoring-production">
+                                    <h2>Production Monitoring</h2>
+                                    <p>Monitor performance in production environments:</p>
+
+                                    <h3>Application Performance Monitoring (APM)</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Django Silk for production
+SILKY_PYTHON_PROFILER = True
+SILKY_INTERCEPT_PERCENT = 25  # Sample 25% of requests
+SILKY_MAX_RECORDED_REQUESTS = 10**4
+SILKY_MAX_RECORDED_REQUESTS_CHECK_PERCENT = 25
+
+# For New Relic APM
+NEW_RELIC_CONFIG_FILE = '/path/to/newrelic.ini'</code></pre>
+                                    </div>
+
+                                    <h3>Logging and Metrics</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># middleware.py - Request timing middleware
+import time
+import logging
+
+logger = logging.getLogger(__name__)
+
+class TimingMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+    
+    def __call__(self, request):
+        start_time = time.time()
+        
+        response = self.get_response(request)
+        
+        duration = time.time() - start_time
+        
+        # Log slow requests
+        if duration > 2:  # 2 seconds
+            logger.warning(
+                f"Slow request: {request.path} took {duration:.2f} seconds"
+            )
+        
+        # Add timing header
+        response["X-Request-Duration"] = f"{duration:.2f}"
+        
+        return response</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="tools-resources">
+                                    <h2>Tools and Resources</h2>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Monitoring Tools</h5>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-check text-success me-2"></i><a href="https://django-debug-toolbar.readthedocs.io/" target="_blank">Django Debug Toolbar</a></li>
+                                                        <li><i class="fas fa-check text-success me-2"></i><a href="https://github.com/jazzband/django-silk" target="_blank">Django Silk</a></li>
+                                                        <li><i class="fas fa-check text-success me-2"></i><a href="https://newrelic.com/" target="_blank">New Relic</a></li>
+                                                        <li><i class="fas fa-check text-success me-2"></i><a href="https://docs.datadoghq.com/" target="_blank">Datadog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Optimization Libraries</h5>
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="fas fa-check text-success me-2"></i><a href="https://django-compressor.readthedocs.io/" target="_blank">Django Compressor</a></li>
+                                                        <li><i class="fas fa-check text-success me-2"></i><a href="http://whitenoise.evans.io/" target="_blank">WhiteNoise</a></li>
+                                                        <li><i class="fas fa-check text-success me-2"></i><a href="https://docs.celeryq.dev/" target="_blank">Celery</a></li>
+                                                        <li><i class="fas fa-check text-success me-2"></i><a href="https://github.com/jazzband/django-redis" target="_blank">Django Redis</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="next-steps">
+                                    <h2>Next Steps</h2>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-shield-alt fa-2x text-warning mb-3"></i>
+                                                    <h5 class="card-title">Security Best Practices</h5>
+                                                    <p class="card-text">Learn security optimization and best practices.</p>
+                                                    <a href="security.html" class="btn btn-warning">Security Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-tasks fa-2x text-primary mb-3"></i>
+                                                    <h5 class="card-title">Deployment Checklist</h5>
+                                                    <p class="card-text">Complete deployment checklist for production.</p>
+                                                    <a href="production.html" class="btn btn-primary">View Checklist</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-database fa-2x text-success mb-3"></i>
+                                                    <h5 class="card-title">Database Optimization</h5>
+                                                    <p class="card-text">Deep dive into database performance tuning.</p>
+                                                    <a href="../models-orm/queries.html" class="btn btn-success">Database Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="sticky-top" style="top: 6rem;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">On This Page</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <nav class="nav flex-column">
+                                                <a class="nav-link ps-0" href="#introduction">Introduction</a>
+                                                <a class="nav-link ps-0" href="#performance-monitoring">Performance Monitoring</a>
+                                                <a class="nav-link ps-0" href="#database-optimization">Database Optimization</a>
+                                                <a class="nav-link ps-0" href="#caching-strategies">Caching Strategies</a>
+                                                <a class="nav-link ps-0" href="#template-optimization">Template Optimization</a>
+                                                <a class="nav-link ps-0" href="#static-files-optimization">Static Files</a>
+                                                <a class="nav-link ps-0" href="#database-configuration">Database Configuration</a>
+                                                <a class="nav-link ps-0" href="#middleware-optimization">Middleware Optimization</a>
+                                                <a class="nav-link ps-0" href="#async-optimization">Async & Background</a>
+                                                <a class="nav-link ps-0" href="#frontend-optimization">Frontend Optimization</a>
+                                                <a class="nav-link ps-0" href="#performance-checklist">Performance Checklist</a>
+                                                <a class="nav-link ps-0" href="#monitoring-production">Production Monitoring</a>
+                                                <a class="nav-link ps-0" href="#tools-resources">Tools & Resources</a>
+                                                <a class="nav-link ps-0" href="#next-steps">Next Steps</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Quick Wins</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-success p-2 mb-2">
+                                                <small><strong>High Impact:</strong> Add database indexes</small>
+                                            </div>
+                                            <div class="alert alert-info p-2 mb-2">
+                                                <small><strong>Quick Fix:</strong> Use select_related/prefetch_related</small>
+                                            </div>
+                                            <div class="alert alert-warning p-2">
+                                                <small><strong>Easy Setup:</strong> Implement template caching</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Related Guides</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="list-group list-group-flush">
+                                                <a href="security.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-shield-alt me-2 text-warning"></i>
+                                                    Security Best Practices
+                                                </a>
+                                                <a href="production.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-tasks me-2 text-primary"></i>
+                                                    Deployment Checklist
+                                                </a>
+                                                <a href="../models-orm/queries.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-database me-2 text-success"></i>
+                                                    Database Queries
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Django Documentation</h5>
+                    <p class="text-muted">Complete guide to building web applications with Django.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html" class="text-muted">Home</a></li>
+                        <li><a href="../../quick-start.html" class="text-muted">Quick Start</a></li>
+                        <li><a href="../getting-started/tutorial.html" class="text-muted">Tutorial</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://djangoproject.com" class="text-muted" target="_blank">Official Django Website</a></li>
+                        <li><a href="https://docs.djangoproject.com" class="text-muted" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/django" class="text-muted" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Django Documentation. This is a static documentation site for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
