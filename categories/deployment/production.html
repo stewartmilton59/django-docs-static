@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Checklist - Django Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-book me-2"></i>Django Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../quick-start.html">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../search.html">Search</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <div class="search-container">
+                        <form action="../../search.html" method="get" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="Search documentation...">
+                            <button type="submit" class="btn btn-outline-light ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light sidebar">
+                <div class="position-sticky pt-5">
+                    <div class="p-3">
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Documentation</h6>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">
+                                    <i class="fas fa-home me-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../quick-start.html">
+                                    <i class="fas fa-rocket me-2"></i>Quick Start
+                                </a>
+                            </li>
+                            
+                            <!-- Getting Started -->
+                            <li class="category-header">
+                                <i class="fas fa-play-circle me-2"></i>Getting Started
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/installation.html">
+                                    Installation Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/first-project.html">
+                                    Writing Your First Django App
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/tutorial.html">
+                                    Complete Tutorial
+                                </a>
+                            </li>
+
+                            <!-- Models & ORM -->
+                            <li class="category-header">
+                                <i class="fas fa-database me-2"></i>Models & ORM
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/models.html">
+                                    Models and Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/queries.html">
+                                    Making Queries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/migrations.html">
+                                    Database Migrations
+                                </a>
+                            </li>
+
+                            <!-- Views & Templates -->
+                            <li class="category-header">
+                                <i class="fas fa-code me-2"></i>Views & Templates
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/views.html">
+                                    Class-based and Function Views
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/templates.html">
+                                    Template Language
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/forms.html">
+                                    Forms and Validation
+                                </a>
+                            </li>
+
+                            <!-- Deployment -->
+                            <li class="category-header">
+                                <i class="fas fa-server me-2"></i>Deployment
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active ps-4" href="production.html">
+                                    Deployment Checklist
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="performance.html">
+                                    Performance Optimization
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="security.html">
+                                    Security Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
+                <div class="pt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="../../index.html">Deployment</a></li>
+                            <li class="breadcrumb-item active">Deployment Checklist</li>
+                        </ol>
+                    </nav>
+
+                    <article class="doc-content">
+                        <header class="mb-4">
+                            <h1>Deployment Checklist</h1>
+                            <div class="text-muted d-flex align-items-center gap-3">
+                                <span><i class="fas fa-clock me-1"></i> 30 min read</span>
+                                <span><i class="fas fa-calendar me-1"></i> Updated Jan 2024</span>
+                                <span class="badge bg-primary">Checklist</span>
+                            </div>
+                        </header>
+
+                        <div class="alert alert-warning">
+                            <strong><i class="fas fa-exclamation-triangle me-2"></i>Important:</strong> Complete this checklist before deploying your Django application to production.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <section id="introduction">
+                                    <h2>Introduction</h2>
+                                    <p>This comprehensive checklist covers everything you need to deploy your Django application securely and efficiently to production. Follow each section in order and verify all items before going live.</p>
+                                    
+                                    <div class="row text-center mb-4">
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-shield-alt fa-2x text-warning mb-2"></i>
+                                                    <h5>Security</h5>
+                                                    <p class="text-muted">Critical security configurations</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-cogs fa-2x text-success mb-2"></i>
+                                                    <h5>Configuration</h5>
+                                                    <p class="text-muted">Production settings</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-rocket fa-2x text-info mb-2"></i>
+                                                    <h5>Performance</h5>
+                                                    <p class="text-muted">Optimization for production</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="pre-deployment">
+                                    <h2>Pre-Deployment Preparation</h2>
+                                    <p>Complete these steps before starting the deployment process:</p>
+
+                                    <div class="checklist-section">
+                                        <h4 class="text-primary">Development Phase</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check1">
+                                            <label class="form-check-label" for="check1">
+                                                <strong>Testing Completed</strong> - All unit tests, integration tests, and user acceptance tests pass
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check2">
+                                            <label class="form-check-label" for="check2">
+                                                <strong>Code Review</strong> - Peer code review completed and all issues addressed
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check3">
+                                            <label class="form-check-label" for="check3">
+                                                <strong>Dependency Audit</strong> - All dependencies updated and security vulnerabilities checked
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-primary">Environment Setup</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check4">
+                                            <label class="form-check-label" for="check4">
+                                                <strong>Production Environment</strong> - Servers, databases, and infrastructure provisioned
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check5">
+                                            <label class="form-check-label" for="check5">
+                                                <strong>Domain & SSL</strong> - Domain configured and SSL certificates obtained
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check6">
+                                            <label class="form-check-label" for="check6">
+                                                <strong>Backup Strategy</strong> - Database and file backup procedures established
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="security-configuration">
+                                    <h2>Security Configuration</h2>
+                                    <p>Critical security settings that must be configured for production:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Security Settings
+import os
+from pathlib import Path
+
+# Base directory
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Secret key from environment
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+# Debug mode OFF
+DEBUG = False
+
+# Allowed hosts
+ALLOWED_HOSTS = [
+    'yourdomain.com',
+    'www.yourdomain.com',
+    'your-server-ip',
+]
+
+# Security middleware
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True</code></pre>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-warning">Security Checklist</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check7">
+                                            <label class="form-check-label" for="check7">
+                                                <strong>DEBUG Mode Disabled</strong> - DEBUG = False in production
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check8">
+                                            <label class="form-check-label" for="check8">
+                                                <strong>Secret Key Secured</strong> - SECRET_KEY from environment variables, not in code
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check9">
+                                            <label class="form-check-label" for="check9">
+                                                <strong>ALLOWED_HOSTS Configured</strong> - All valid domain names and IPs listed
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check10">
+                                            <label class="form-check-label" for="check10">
+                                                <strong>HTTPS Enabled</strong> - SSL certificates installed and configured
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check11">
+                                            <label class="form-check-label" for="check11">
+                                                <strong>Security Headers</strong> - HSTS, XSS protection, content type options enabled
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="database-configuration">
+                                    <h2>Database Configuration</h2>
+                                    <p>Production database setup and optimization:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Database Configuration
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+        'CONN_MAX_AGE': 600,  # Connection persistence
+        'OPTIONS': {
+            'connect_timeout': 10,
+        }
+    }
+}
+
+# For connection pooling with pgbouncer
+DATABASES['default']['DISABLE_SERVER_SIDE_CURSORS'] = True</code></pre>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-success">Database Checklist</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check12">
+                                            <label class="form-check-label" for="check12">
+                                                <strong>Production Database</strong> - PostgreSQL, MySQL, or other production-grade database
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check13">
+                                            <label class="form-check-label" for="check13">
+                                                <strong>Credentials Secured</strong> - Database credentials in environment variables
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check14">
+                                            <label class="form-check-label" for="check14">
+                                                <strong>Migrations Ready</strong> - All database migrations tested and ready to apply
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check15">
+                                            <label class="form-check-label" for="check15">
+                                                <strong>Backups Configured</strong> - Automated database backups scheduled
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check16">
+                                            <label class="form-check-label" for="check16">
+                                                <strong>Connection Pooling</strong> - CONN_MAX_AGE or external connection pooler configured
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="static-media-files">
+                                    <h2>Static and Media Files</h2>
+                                    <p>Configuration for serving static and user-uploaded files:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Static Files Configuration
+# Static files
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# WhiteNoise for static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# For CDN (optional)
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'</code></pre>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-info">Files Checklist</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check17">
+                                            <label class="form-check-label" for="check17">
+                                                <strong>Static Files Collected</strong> - python manage.py collectstatic executed
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check18">
+                                            <label class="form-check-label" for="check18">
+                                                <strong>WhiteNoise Configured</strong> - Static files serving middleware enabled
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check19">
+                                            <label class="form-check-label" for="check19">
+                                                <strong>Media Files Storage</strong> - Proper storage backend for user uploads
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check20">
+                                            <label class="form-check-label" for="check20">
+                                                <strong>CDN Configured</strong> - CDN for static/media files (if using)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="application-server">
+                                    <h2>Application Server Configuration</h2>
+                                    <p>WSGI server and process manager setup:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># wsgi.py
+import os
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
+application = get_wsgi_application()
+
+# For ASGI (if using async)
+# asgi.py
+import os
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
+application = get_asgi_application()</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># gunicorn_config.py
+# Gunicorn configuration file
+bind = "0.0.0.0:8000"
+workers = 3
+worker_class = "sync"
+worker_connections = 1000
+max_requests = 1000
+max_requests_jitter = 100
+timeout = 30
+keepalive = 2
+
+# Logging
+accesslog = "-"
+errorlog = "-"
+loglevel = "info"
+
+# Process naming
+proc_name = "myproject"</code></pre>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-primary">Server Checklist</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check21">
+                                            <label class="form-check-label" for="check21">
+                                                <strong>WSGI/ASGI Server</strong> - Gunicorn, uWSGI, or Daphne configured
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check22">
+                                            <label class="form-check-label" for="check22">
+                                                <strong>Process Manager</strong> - Systemd, Supervisord, or Circus for process management
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check23">
+                                            <label class="form-check-label" for="check23">
+                                                <strong>Worker Configuration</strong> - Appropriate number of workers and threads
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check24">
+                                            <label class="form-check-label" for="check24">
+                                                <strong>Reverse Proxy</strong> - Nginx or Apache configured as reverse proxy
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="caching-sessions">
+                                    <h2>Caching and Sessions</h2>
+                                    <p>Production caching and session configuration:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Caching Configuration
+# Redis cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379/1'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
+        }
+    }
+}
+
+# Session configuration
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+SESSION_CACHE_ALIAS = 'default'
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_HTTPONLY = True</code></pre>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-success">Caching Checklist</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check25">
+                                            <label class="form-check-label" for="check25">
+                                                <strong>Cache Backend</strong> - Redis, Memcached, or database caching configured
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check26">
+                                            <label class="form-check-label" for="check26">
+                                                <strong>Session Storage</strong> - Secure session storage backend configured
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check27">
+                                            <label class="form-check-label" for="check27">
+                                                <strong>Cache Timeouts</strong> - Appropriate cache timeouts for different data types
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="email-configuration">
+                                    <h2>Email Configuration</h2>
+                                    <p>Production email service setup:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Email Configuration
+# Email backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# SMTP configuration
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+# Default from email
+DEFAULT_FROM_EMAIL = 'noreply@yourdomain.com'
+SERVER_EMAIL = 'server@yourdomain.com'
+
+# Admin emails
+ADMINS = [
+    ('Admin Name', 'admin@yourdomain.com'),
+]
+
+MANAGERS = ADMINS</code></pre>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-info">Email Checklist</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check28">
+                                            <label class="form-check-label" for="check28">
+                                                <strong>SMTP Service</strong> - Production SMTP service configured (SendGrid, Mailgun, etc.)
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check29">
+                                            <label class="form-check-label" for="check29">
+                                                <strong>Error Reporting</strong> - ADMINS and MANAGERS configured for error emails
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check30">
+                                            <label class="form-check-label" for="check30">
+                                                <strong>Email Testing</strong> - Test emails sent and received successfully
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="logging-monitoring">
+                                    <h2>Logging and Monitoring</h2>
+                                    <p>Production logging and application monitoring:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py - Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '/var/log/django/app.log',
+            'maxBytes': 1024*1024*5,  # 5 MB
+            'backupCount': 5,
+            'formatter': 'verbose'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins', 'file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}</code></pre>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-warning">Monitoring Checklist</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check31">
+                                            <label class="form-check-label" for="check31">
+                                                <strong>Logging Configured</strong> - Production logging with appropriate log levels
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check32">
+                                            <label class="form-check-label" for="check32">
+                                                <strong>Error Tracking</strong> - Sentry or other error tracking service integrated
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check33">
+                                            <label class="form-check-label" for="check33">
+                                                <strong>Performance Monitoring</strong> - APM tool configured (New Relic, Datadog)
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check34">
+                                            <label class="form-check-label" for="check34">
+                                                <strong>Health Checks</strong> - Application health check endpoints configured
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="environment-variables">
+                                    <h2>Environment Variables</h2>
+                                    <p>All sensitive configuration should use environment variables:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># .env.production - Environment variables
+# Django
+DJANGO_SECRET_KEY=your-super-secret-key-here
+DJANGO_DEBUG=False
+DJANGO_ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
+
+# Database
+DB_NAME=myproject_prod
+DB_USER=myproject_user
+DB_PASSWORD=secure-database-password
+DB_HOST=localhost
+DB_PORT=5432
+
+# Email
+EMAIL_HOST=smtp.sendgrid.net
+EMAIL_HOST_USER=apikey
+EMAIL_HOST_PASSWORD=your-sendgrid-api-key
+
+# Cache
+REDIS_URL=redis://localhost:6379/1
+
+# AWS (if using S3)
+AWS_ACCESS_KEY_ID=your-aws-access-key
+AWS_SECRET_ACCESS_KEY=your-aws-secret-key
+AWS_STORAGE_BUCKET_NAME=your-bucket-name</code></pre>
+                                    </div>
+
+                                    <div class="checklist-section mt-4">
+                                        <h4 class="text-danger">Environment Checklist</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check35">
+                                            <label class="form-check-label" for="check35">
+                                                <strong>All Secrets in Environment</strong> - No secrets in version control
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check36">
+                                            <label class="form-check-label" for="check36">
+                                                <strong>Environment Files Secure</strong> - .env files not committed to repository
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check37">
+                                            <label class="form-check-label" for="check37">
+                                                <strong>Production Variables Set</strong> - All environment variables properly set on server
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="final-checks">
+                                    <h2>Final Deployment Checks</h2>
+                                    <p>Final verification before going live:</p>
+
+                                    <div class="checklist-section">
+                                        <h4 class="text-success">Pre-Launch Verification</h4>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check38">
+                                            <label class="form-check-label" for="check38">
+                                                <strong>Database Migrations</strong> - python manage.py migrate executed successfully
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check39">
+                                            <label class="form-check-label" for="check39">
+                                                <strong>Static Files Collected</strong> - python manage.py collectstatic completed
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check40">
+                                            <label class="form-check-label" for="check40">
+                                                <strong>Django Check</strong> - python manage.py check --deploy passes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check41">
+                                            <label class="form-check-label" for="check41">
+                                                <strong>HTTPS Working</strong> - Site accessible via HTTPS with valid certificate
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check42">
+                                            <label class="form-check-label" for="check42">
+                                                <strong>All Functionality Tested</strong> - Critical user journeys tested in production
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check43">
+                                            <label class="form-check-label" for="check43">
+                                                <strong>Monitoring Active</strong> - All monitoring and alerting systems active
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check44">
+                                            <label class="form-check-label" for="check44">
+                                                <strong>Backup Verified</strong> - Database backup and restore procedure tested
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check45">
+                                            <label class="form-check-label" for="check45">
+                                                <strong>Rollback Plan</strong> - Rollback procedure documented and tested
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="deployment-scripts">
+                                    <h2>Deployment Scripts</h2>
+                                    <p>Automated deployment scripts for consistency:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-bash">#!/bin/bash
+# deploy.sh - Automated deployment script
+
+set -e  # Exit on error
+
+echo "Starting deployment..."
+
+# Pull latest code
+git pull origin main
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run database migrations
+python manage.py migrate
+
+# Collect static files
+python manage.py collectstatic --noinput
+
+# Run checks
+python manage.py check --deploy
+
+# Restart application server
+sudo systemctl restart gunicorn
+
+# Restart Nginx
+sudo systemctl restart nginx
+
+echo "Deployment completed successfully!"</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-yaml"># docker-compose.prod.yml
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    command: gunicorn myproject.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    env_file:
+      - .env.production
+    expose:
+      - 8000
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.21-alpine
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  static_volume:
+  media_volume:</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="quick-reference">
+                                    <h2>Quick Reference Commands</h2>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Task</th>
+                                                    <th>Command</th>
+                                                    <th>Purpose</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Check deployment</td>
+                                                    <td><code>python manage.py check --deploy</code></td>
+                                                    <td>Verify production settings</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Collect static files</td>
+                                                    <td><code>python manage.py collectstatic</code></td>
+                                                    <td>Gather all static files</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Run migrations</td>
+                                                    <td><code>python manage.py migrate</code></td>
+                                                    <td>Apply database changes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Create superuser</td>
+                                                    <td><code>python manage.py createsuperuser</code></td>
+                                                    <td>Create admin user</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Check security</td>
+                                                    <td><code>python manage.py check --deploy</code></td>
+                                                    <td>Security verification</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Test email</td>
+                                                    <td><code>python manage.py sendtestemail</code></td>
+                                                    <td>Test email configuration</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+
+                                <section id="next-steps">
+                                    <h2>Next Steps</h2>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-tachometer-alt fa-2x text-success mb-3"></i>
+                                                    <h5 class="card-title">Performance Optimization</h5>
+                                                    <p class="card-text">Optimize your deployed application for speed and efficiency.</p>
+                                                    <a href="performance.html" class="btn btn-success">Performance Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-shield-alt fa-2x text-warning mb-3"></i>
+                                                    <h5 class="card-title">Security Best Practices</h5>
+                                                    <p class="card-text">Learn advanced security configurations and practices.</p>
+                                                    <a href="security.html" class="btn btn-warning">Security Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-code fa-2x text-info mb-3"></i>
+                                                    <h5 class="card-title">Advanced Deployment</h5>
+                                                    <p class="card-text">Explore advanced deployment strategies and architectures.</p>
+                                                    <a href="https://docs.djangoproject.com/en/stable/howto/deployment/" target="_blank" class="btn btn-info">Official Docs</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="sticky-top" style="top: 6rem;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">On This Page</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <nav class="nav flex-column">
+                                                <a class="nav-link ps-0" href="#introduction">Introduction</a>
+                                                <a class="nav-link ps-0" href="#pre-deployment">Pre-Deployment</a>
+                                                <a class="nav-link ps-0" href="#security-configuration">Security Configuration</a>
+                                                <a class="nav-link ps-0" href="#database-configuration">Database Configuration</a>
+                                                <a class="nav-link ps-0" href="#static-media-files">Static & Media Files</a>
+                                                <a class="nav-link ps-0" href="#application-server">Application Server</a>
+                                                <a class="nav-link ps-0" href="#caching-sessions">Caching & Sessions</a>
+                                                <a class="nav-link ps-0" href="#email-configuration">Email Configuration</a>
+                                                <a class="nav-link ps-0" href="#logging-monitoring">Logging & Monitoring</a>
+                                                <a class="nav-link ps-0" href="#environment-variables">Environment Variables</a>
+                                                <a class="nav-link ps-0" href="#final-checks">Final Checks</a>
+                                                <a class="nav-link ps-0" href="#deployment-scripts">Deployment Scripts</a>
+                                                <a class="nav-link ps-0" href="#quick-reference">Quick Reference</a>
+                                                <a class="nav-link ps-0" href="#next-steps">Next Steps</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Critical Items</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-danger p-2 mb-2">
+                                                <small><strong>Critical:</strong> DEBUG = False</small>
+                                            </div>
+                                            <div class="alert alert-danger p-2 mb-2">
+                                                <small><strong>Critical:</strong> Secret Key Secured</small>
+                                            </div>
+                                            <div class="alert alert-warning p-2">
+                                                <small><strong>Important:</strong> ALLOWED_HOSTS Configured</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Quick Commands</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <code class="small d-block mb-1">check --deploy</code>
+                                            <code class="small d-block mb-1">collectstatic</code>
+                                            <code class="small d-block mb-1">migrate</code>
+                                            <code class="small d-block">createsuperuser</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Related Guides</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="list-group list-group-flush">
+                                                <a href="performance.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-tachometer-alt me-2 text-success"></i>
+                                                    Performance Optimization
+                                                </a>
+                                                <a href="security.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-shield-alt me-2 text-warning"></i>
+                                                    Security Best Practices
+                                                </a>
+                                                <a href="../getting-started/installation.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-download me-2 text-primary"></i>
+                                                    Installation Guide
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Django Documentation</h5>
+                    <p class="text-muted">Complete guide to building web applications with Django.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html" class="text-muted">Home</a></li>
+                        <li><a href="../../quick-start.html" class="text-muted">Quick Start</a></li>
+                        <li><a href="../getting-started/tutorial.html" class="text-muted">Tutorial</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://djangoproject.com" class="text-muted" target="_blank">Official Django Website</a></li>
+                        <li><a href="https://docs.djangoproject.com" class="text-muted" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/django" class="text-muted" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Django Documentation. This is a static documentation site for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
