@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Best Practices - Django Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-book me-2"></i>Django Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../quick-start.html">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../search.html">Search</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <div class="search-container">
+                        <form action="../../search.html" method="get" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="Search documentation...">
+                            <button type="submit" class="btn btn-outline-light ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light sidebar">
+                <div class="position-sticky pt-5">
+                    <div class="p-3">
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Documentation</h6>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">
+                                    <i class="fas fa-home me-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../quick-start.html">
+                                    <i class="fas fa-rocket me-2"></i>Quick Start
+                                </a>
+                            </li>
+                            
+                            <!-- Getting Started -->
+                            <li class="category-header">
+                                <i class="fas fa-play-circle me-2"></i>Getting Started
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/installation.html">
+                                    Installation Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/first-project.html">
+                                    Writing Your First Django App
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/tutorial.html">
+                                    Complete Tutorial
+                                </a>
+                            </li>
+
+                            <!-- Models & ORM -->
+                            <li class="category-header">
+                                <i class="fas fa-database me-2"></i>Models & ORM
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/models.html">
+                                    Models and Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/queries.html">
+                                    Making Queries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../models-orm/migrations.html">
+                                    Database Migrations
+                                </a>
+                            </li>
+
+                            <!-- Views & Templates -->
+                            <li class="category-header">
+                                <i class="fas fa-code me-2"></i>Views & Templates
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/views.html">
+                                    Class-based and Function Views
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/templates.html">
+                                    Template Language
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/forms.html">
+                                    Forms and Validation
+                                </a>
+                            </li>
+
+                            <!-- Deployment -->
+                            <li class="category-header">
+                                <i class="fas fa-server me-2"></i>Deployment
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="production.html">
+                                    Deployment Checklist
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="performance.html">
+                                    Performance Optimization
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active ps-4" href="security.html">
+                                    Security Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
+                <div class="pt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="../../index.html">Deployment</a></li>
+                            <li class="breadcrumb-item active">Security Best Practices</li>
+                        </ol>
+                    </nav>
+
+                    <article class="doc-content">
+                        <header class="mb-4">
+                            <h1>Security Best Practices</h1>
+                            <div class="text-muted d-flex align-items-center gap-3">
+                                <span><i class="fas fa-clock me-1"></i> 20 min read</span>
+                                <span><i class="fas fa-calendar me-1"></i> Updated Jan 2024</span>
+                                <span class="badge bg-warning">Security</span>
+                            </div>
+                        </header>
+
+                        <div class="alert alert-danger">
+                            <strong><i class="fas fa-exclamation-triangle me-2"></i>Important:</strong> Security is not optional. Follow these practices to protect your application and users.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <section id="introduction">
+                                    <h2>Introduction</h2>
+                                    <p>Django provides strong security protections out of the box, but proper configuration and development practices are essential for maintaining a secure application. This guide covers the most important security considerations for Django applications.</p>
+                                    
+                                    <div class="alert-note">
+                                        <strong>Note:</strong> Security is a process, not a one-time setup. Regularly review and update your security practices.
+                                    </div>
+                                </section>
+
+                                <section id="django-security-features">
+                                    <h2>Django's Built-in Security Features</h2>
+                                    <p>Django includes numerous security features that work automatically when properly configured:</p>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Feature</th>
+                                                    <th>Description</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Cross-Site Scripting (XSS) Protection</td>
+                                                    <td>Automatic escaping in templates</td>
+                                                    <td><span class="badge bg-success">Enabled by default</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cross-Site Request Forgery (CSRF) Protection</td>
+                                                    <td>CSRF tokens for POST requests</td>
+                                                    <td><span class="badge bg-success">Enabled by default</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SQL Injection Protection</td>
+                                                    <td>ORM prevents SQL injection</td>
+                                                    <td><span class="badge bg-success">Enabled by default</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Clickjacking Protection</td>
+                                                    <td>X-Frame-Options middleware</td>
+                                                    <td><span class="badge bg-success">Enabled by default</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SSL/HTTPS Redirect</td>
+                                                    <td>Security middleware for HTTPS</td>
+                                                    <td><span class="badge bg-warning">Requires configuration</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Secure Headers</td>
+                                                    <td>Security middleware for security headers</td>
+                                                    <td><span class="badge bg-warning">Requires configuration</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+
+                                <section id="environment-configuration">
+                                    <h2>Environment Configuration</h2>
+                                    <p>Proper environment configuration is the foundation of Django security:</p>
+
+                                    <h3>Secret Key Management</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+import os
+from django.core.exceptions import ImproperlyConfigured
+
+def get_secret_value(name, default=None):
+    """Get secret value from environment variable."""
+    value = os.getenv(name, default)
+    if value is None:
+        raise ImproperlyConfigured(f"Set the {name} environment variable")
+    return value
+
+SECRET_KEY = get_secret_value('DJANGO_SECRET_KEY')</code></pre>
+                                    </div>
+
+                                    <h3>Environment-based Settings</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+import os
+
+DEBUG = get_secret_value('DJANGO_DEBUG', 'False').lower() == 'true'
+
+ALLOWED_HOSTS = get_secret_value('DJANGO_ALLOWED_HOSTS', '').split(',')
+
+# Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': get_secret_value('DB_NAME'),
+        'USER': get_secret_value('DB_USER'),
+        'PASSWORD': get_secret_value('DB_PASSWORD'),
+        'HOST': get_secret_value('DB_HOST', 'localhost'),
+        'PORT': get_secret_value('DB_PORT', '5432'),
+    }
+}</code></pre>
+                                    </div>
+
+                                    <div class="alert-warning">
+                                        <strong>Warning:</strong> Never commit secret keys or passwords to version control. Use environment variables or secret management services.
+                                    </div>
+                                </section>
+
+                                <section id="https-configuration">
+                                    <h2>HTTPS Configuration</h2>
+                                    <p>Always use HTTPS in production to encrypt data in transit:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+# Security settings for production
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True</code></pre>
+                                    </div>
+
+                                    <h3>Security Middleware</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    # ... other middleware
+]</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="authentication-security">
+                                    <h2>Authentication Security</h2>
+                                    <p>Secure user authentication and session management:</p>
+
+                                    <h3>Password Security</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 10,
+        }
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# Password hashing
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+]</code></pre>
+                                    </div>
+
+                                    <h3>Session Security</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+# Session settings
+SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_HTTPONLY = True
+SESSION_SAVE_EVERY_REQUEST = True  # More secure but heavier</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="input-validation">
+                                    <h2>Input Validation and Data Handling</h2>
+                                    <p>Always validate and sanitize user input:</p>
+
+                                    <h3>Form Validation</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># forms.py
+from django import forms
+from django.core.exceptions import ValidationError
+import re
+
+class UserRegistrationForm(forms.Form):
+    username = forms.CharField(max_length=150)
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+    
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if not re.match(r'^[\w.@+-]+\Z', username):
+            raise ValidationError("Enter a valid username.")
+        return username</code></pre>
+                                    </div>
+
+                                    <h3>Model Validation</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># models.py
+from django.db import models
+from django.core.exceptions import ValidationError
+
+def validate_positive(value):
+    if value < 0:
+        raise ValidationError('Value must be positive')
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2,
+        validators=[validate_positive]
+    )
+    
+    def clean(self):
+        if self.price == 0:
+            raise ValidationError('Price cannot be zero')</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="file-upload-security">
+                                    <h2>File Upload Security</h2>
+                                    <p>Secure handling of file uploads is critical:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># forms.py
+from django import forms
+from django.core.exceptions import ValidationError
+import os
+
+def validate_file_extension(value):
+    ext = os.path.splitext(value.name)[1]
+    valid_extensions = ['.pdf', '.doc', '.docx', '.jpg', '.png', '.txt']
+    if not ext.lower() in valid_extensions:
+        raise ValidationError('Unsupported file extension.')
+
+def validate_file_size(value):
+    filesize = value.size
+    if filesize > 5 * 1024 * 1024:  # 5MB
+        raise ValidationError("Maximum file size is 5MB")
+
+class DocumentForm(forms.Form):
+    document = forms.FileField(
+        validators=[validate_file_extension, validate_file_size]
+    )</code></pre>
+                                    </div>
+
+                                    <h3>Secure File Storage</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+# Store uploaded files outside web root
+MEDIA_ROOT = '/path/to/secure/media/directory/'
+MEDIA_URL = '/media/'
+
+# In production, serve media files through your web server
+# not through Django's development server</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="sql-injection-prevention">
+                                    <h2>SQL Injection Prevention</h2>
+                                    <p>Django's ORM protects against SQL injection, but be careful with raw SQL:</p>
+
+                                    <div class="alert-danger">
+                                        <strong>Danger:</strong> Never use string formatting or concatenation with user input in SQL queries.
+                                    </div>
+
+                                    <h3>Safe Query Examples</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># SAFE: Using Django ORM
+users = User.objects.filter(username=request.GET['username'])
+
+# SAFE: Parameterized raw SQL
+from django.db import connection
+with connection.cursor() as cursor:
+    cursor.execute("SELECT * FROM users WHERE username = %s", [username])
+    row = cursor.fetchone()
+
+# UNSAFE: String formatting (VULNERABLE TO SQL INJECTION)
+cursor.execute(f"SELECT * FROM users WHERE username = '{username}'")</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="xss-prevention">
+                                    <h2>XSS (Cross-Site Scripting) Prevention</h2>
+                                    <p>Django templates automatically escape HTML, but be careful with mark_safe:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># SAFE: Automatic escaping in templates
+&lt;p&gt;{{ user_input }}&lt;/p&gt;  {# HTML is automatically escaped #}
+
+# DANGEROUS: Using mark_safe incorrectly
+from django.utils.safestring import mark_safe
+
+# UNSAFE if user_input contains malicious JavaScript
+content = mark_safe(user_input)
+
+# SAFE: Only use mark_safe with trusted content
+content = mark_safe("<p>Trusted content</p>")</code></pre>
+                                    </div>
+
+                                    <h3>Content Security Policy (CSP)</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Using django-csp package
+# settings.py
+MIDDLEWARE = [
+    # ...
+    'csp.middleware.CSPMiddleware',
+]
+
+CSP_DEFAULT_SRC = ["'self'"]
+CSP_SCRIPT_SRC = ["'self'", "https://trusted-cdn.com"]
+CSP_STYLE_SRC = ["'self'", "'unsafe-inline'"]</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="csrf-protection">
+                                    <h2>CSRF (Cross-Site Request Forgery) Protection</h2>
+                                    <p>Django provides CSRF protection out of the box:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-html">&lt;!-- In templates --&gt;
+&lt;form method="post"&gt;
+    {% csrf_token %}
+    &lt;!-- form fields --&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># For AJAX requests
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+fetch('/api/endpoint/', {
+    method: 'POST',
+    headers: {
+        'X-CSRFToken': csrftoken,
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+})</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="api-security">
+                                    <h2>API Security</h2>
+                                    <p>Secure your Django REST API endpoints:</p>
+
+                                    <h3>Django REST Framework Security</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day'
+    }
+}</code></pre>
+                                    </div>
+
+                                    <h3>JWT Authentication</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># For JWT authentication
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+}</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="logging-monitoring">
+                                    <h2>Logging and Monitoring</h2>
+                                    <p>Implement comprehensive logging and monitoring:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'security_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/django/security.log',
+        },
+    },
+    'loggers': {
+        'django.security': {
+            'handlers': ['security_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}</code></pre>
+                                    </div>
+
+                                    <h3>Security Monitoring</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># middleware.py
+import time
+from django.core.cache import cache
+from django.http import HttpResponseForbidden
+
+class SecurityMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+        
+    def __call__(self, request):
+        # Rate limiting
+        ip = self.get_client_ip(request)
+        key = f"rate_limit:{ip}"
+        requests = cache.get(key, 0)
+        
+        if requests > 100:  # 100 requests per minute
+            return HttpResponseForbidden("Rate limit exceeded")
+            
+        cache.set(key, requests + 1, 60)
+        return self.get_response(request)
+        
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="dependency-security">
+                                    <h2>Dependency Security</h2>
+                                    <p>Keep your dependencies secure and up to date:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Regularly update dependencies
+pip list --outdated
+pip install --upgrade package-name
+
+# Use security scanning tools
+pip install safety
+safety check
+
+# Or use pip-audit
+pip install pip-audit
+pip-audit</code></pre>
+                                    </div>
+
+                                    <h3>Requirements Security</h3>
+                                    <div class="code-block">
+                                        <pre><code># requirements.txt with version pinning
+Django==4.2.0
+django-cors-headers==3.13.0
+djangorestframework==3.14.0
+psycopg2-binary==2.9.5
+gunicorn==20.1.0
+
+# Use hashes for extra security in production
+Django==4.2.0 \
+    --hash=sha256:abc123... \
+    --hash=sha256:def456...</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="deployment-checklist">
+                                    <h2>Security Deployment Checklist</h2>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Check</th>
+                                                    <th>Status</th>
+                                                    <th>Priority</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>DEBUG mode disabled</td>
+                                                    <td><span class="badge bg-warning">Required</span></td>
+                                                    <td>Critical</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Secret key not in version control</td>
+                                                    <td><span class="badge bg-warning">Required</span></td>
+                                                    <td>Critical</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>HTTPS enabled</td>
+                                                    <td><span class="badge bg-warning">Required</span></td>
+                                                    <td>Critical</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ALLOWED_HOSTS configured</td>
+                                                    <td><span class="badge bg-warning">Required</span></td>
+                                                    <td>Critical</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CSRF protection enabled</td>
+                                                    <td><span class="badge bg-success">Default</span></td>
+                                                    <td>Critical</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>XSS protection enabled</td>
+                                                    <td><span class="badge bg-success">Default</span></td>
+                                                    <td>Critical</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Clickjacking protection enabled</td>
+                                                    <td><span class="badge bg-success">Default</span></td>
+                                                    <td>High</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Secure password hashers</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                    <td>High</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Security headers configured</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                    <td>High</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>File upload validation</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                    <td>Medium</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rate limiting implemented</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                    <td>Medium</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Security logging enabled</td>
+                                                    <td><span class="badge bg-info">Recommended</span></td>
+                                                    <td>Medium</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+
+                                <section id="security-testing">
+                                    <h2>Security Testing</h2>
+                                    <p>Regularly test your application for security vulnerabilities:</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Install security testing tools
+pip install bandit safety django-debug-toolbar
+
+# Run security linter
+bandit -r myapp/
+
+# Check for vulnerabilities in dependencies
+safety check
+
+# Use Django's check command
+python manage.py check --deploy</code></pre>
+                                    </div>
+
+                                    <h3>Automated Security Testing</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># tests/test_security.py
+from django.test import TestCase
+from django.urls import reverse
+
+class SecurityTests(TestCase):
+    def test_debug_mode_disabled(self):
+        self.assertFalse(settings.DEBUG)
+    
+    def test_https_redirect(self):
+        response = self.client.get('/', secure=False)
+        self.assertEqual(response.status_code, 301)
+        self.assertTrue(response.url.startswith('https://'))
+    
+    def test_csrf_protection(self):
+        response = self.client.post(reverse('login'), {})
+        self.assertEqual(response.status_code, 403)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="resources">
+                                    <h2>Additional Resources</h2>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Official Documentation</h5>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="https://docs.djangoproject.com/en/stable/topics/security/" target="_blank">Django Security Overview</a></li>
+                                                        <li><a href="https://docs.djangoproject.com/en/stable/ref/settings/#security" target="_blank">Security Settings</a></li>
+                                                        <li><a href="https://docs.djangoproject.com/en/stable/howto/deployment/checklist/" target="_blank">Deployment Checklist</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Security Tools</h5>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="https://bandit.readthedocs.io/" target="_blank">Bandit - Security Linter</a></li>
+                                                        <li><a href="https://pyup.io/safety/" target="_blank">Safety - Dependency Checker</a></li>
+                                                        <li><a href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top 10</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="next-steps">
+                                    <h2>Next Steps</h2>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-tasks fa-2x text-primary mb-3"></i>
+                                                    <h5 class="card-title">Deployment Checklist</h5>
+                                                    <p class="card-text">Complete deployment security checklist for production.</p>
+                                                    <a href="production.html" class="btn btn-primary">View Checklist</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-tachometer-alt fa-2x text-success mb-3"></i>
+                                                    <h5 class="card-title">Performance Optimization</h5>
+                                                    <p class="card-text">Optimize your Django application performance.</p>
+                                                    <a href="performance.html" class="btn btn-success">Learn Performance</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-shield-alt fa-2x text-warning mb-3"></i>
+                                                    <h5 class="card-title">Security Updates</h5>
+                                                    <p class="card-text">Stay updated with the latest security patches.</p>
+                                                    <a href="https://docs.djangoproject.com/en/stable/releases/security/" target="_blank" class="btn btn-warning">Security Releases</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="sticky-top" style="top: 6rem;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">On This Page</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <nav class="nav flex-column">
+                                                <a class="nav-link ps-0" href="#introduction">Introduction</a>
+                                                <a class="nav-link ps-0" href="#django-security-features">Django Security Features</a>
+                                                <a class="nav-link ps-0" href="#environment-configuration">Environment Configuration</a>
+                                                <a class="nav-link ps-0" href="#https-configuration">HTTPS Configuration</a>
+                                                <a class="nav-link ps-0" href="#authentication-security">Authentication Security</a>
+                                                <a class="nav-link ps-0" href="#input-validation">Input Validation</a>
+                                                <a class="nav-link ps-0" href="#file-upload-security">File Upload Security</a>
+                                                <a class="nav-link ps-0" href="#sql-injection-prevention">SQL Injection Prevention</a>
+                                                <a class="nav-link ps-0" href="#xss-prevention">XSS Prevention</a>
+                                                <a class="nav-link ps-0" href="#csrf-protection">CSRF Protection</a>
+                                                <a class="nav-link ps-0" href="#api-security">API Security</a>
+                                                <a class="nav-link ps-0" href="#logging-monitoring">Logging & Monitoring</a>
+                                                <a class="nav-link ps-0" href="#dependency-security">Dependency Security</a>
+                                                <a class="nav-link ps-0" href="#deployment-checklist">Deployment Checklist</a>
+                                                <a class="nav-link ps-0" href="#security-testing">Security Testing</a>
+                                                <a class="nav-link ps-0" href="#resources">Additional Resources</a>
+                                                <a class="nav-link ps-0" href="#next-steps">Next Steps</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Security Alerts</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-warning p-2 mb-2">
+                                                <small><strong>Critical:</strong> Always keep Django updated</small>
+                                            </div>
+                                            <div class="alert alert-info p-2 mb-2">
+                                                <small><strong>Important:</strong> Never commit secrets to version control</small>
+                                            </div>
+                                            <div class="alert alert-danger p-2">
+                                                <small><strong>Warning:</strong> Disable DEBUG mode in production</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Related Guides</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="list-group list-group-flush">
+                                                <a href="production.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-check-circle me-2 text-primary"></i>
+                                                    Deployment Checklist
+                                                </a>
+                                                <a href="performance.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-tachometer-alt me-2 text-success"></i>
+                                                    Performance Optimization
+                                                </a>
+                                                <a href="../getting-started/tutorial.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-graduation-cap me-2 text-info"></i>
+                                                    Complete Tutorial
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Django Documentation</h5>
+                    <p class="text-muted">Complete guide to building web applications with Django.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html" class="text-muted">Home</a></li>
+                        <li><a href="../../quick-start.html" class="text-muted">Quick Start</a></li>
+                        <li><a href="../getting-started/tutorial.html" class="text-muted">Tutorial</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://djangoproject.com" class="text-muted" target="_blank">Official Django Website</a></li>
+                        <li><a href="https://docs.djangoproject.com" class="text-muted" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/django" class="text-muted" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Django Documentation. This is a static documentation site for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
