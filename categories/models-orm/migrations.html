@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Migrations - Django Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-book me-2"></i>Django Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../quick-start.html">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../search.html">Search</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <div class="search-container">
+                        <form action="../../search.html" method="get" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="Search documentation...">
+                            <button type="submit" class="btn btn-outline-light ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light sidebar">
+                <div class="position-sticky pt-5">
+                    <div class="p-3">
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Documentation</h6>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">
+                                    <i class="fas fa-home me-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../quick-start.html">
+                                    <i class="fas fa-rocket me-2"></i>Quick Start
+                                </a>
+                            </li>
+                            
+                            <!-- Getting Started -->
+                            <li class="category-header">
+                                <i class="fas fa-play-circle me-2"></i>Getting Started
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/installation.html">
+                                    Installation Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/first-project.html">
+                                    Writing Your First Django App
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/tutorial.html">
+                                    Complete Tutorial
+                                </a>
+                            </li>
+
+                            <!-- Models & ORM -->
+                            <li class="category-header">
+                                <i class="fas fa-database me-2"></i>Models & ORM
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="models.html">
+                                    Models and Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="queries.html">
+                                    Making Queries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active ps-4" href="migrations.html">
+                                    Database Migrations
+                                </a>
+                            </li>
+
+                            <!-- Views & Templates -->
+                            <li class="category-header">
+                                <i class="fas fa-code me-2"></i>Views & Templates
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/views.html">
+                                    Class-based and Function Views
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/templates.html">
+                                    Template Language
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/forms.html">
+                                    Forms and Validation
+                                </a>
+                            </li>
+
+                            <!-- Deployment -->
+                            <li class="category-header">
+                                <i class="fas fa-server me-2"></i>Deployment
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/production.html">
+                                    Deployment Checklist
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/performance.html">
+                                    Performance Optimization
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/security.html">
+                                    Security Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
+                <div class="pt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="../../index.html">Models & ORM</a></li>
+                            <li class="breadcrumb-item active">Database Migrations</li>
+                        </ol>
+                    </nav>
+
+                    <article class="doc-content">
+                        <header class="mb-4">
+                            <h1>Database Migrations</h1>
+                            <div class="text-muted d-flex align-items-center gap-3">
+                                <span><i class="fas fa-clock me-1"></i> 20 min read</span>
+                                <span><i class="fas fa-calendar me-1"></i> Updated Jan 2024</span>
+                                <span class="badge bg-success">Database</span>
+                            </div>
+                        </header>
+
+                        <div class="alert alert-info">
+                            <strong><i class="fas fa-lightbulb me-2"></i>Pro Tip:</strong> Migrations are Django's way of propagating changes you make to your models into your database schema. They're designed to be mostly automatic, but you need to know when to make migrations and when to run them.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <section id="introduction">
+                                    <h2>Introduction</h2>
+                                    <p>Migrations are Django's solution for managing database schema changes over time. They allow you to evolve your database schema alongside your codebase in a controlled, versioned manner.</p>
+                                    
+                                    <div class="row text-center mb-4">
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-code-branch fa-2x text-primary mb-2"></i>
+                                                    <h5>Version Control</h5>
+                                                    <p class="text-muted">Track schema changes in version control</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-sync fa-2x text-success mb-2"></i>
+                                                    <h5>Team Collaboration</h5>
+                                                    <p class="text-muted">Sync database changes across team members</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-undo fa-2x text-warning mb-2"></i>
+                                                    <h5>Rollback Safe</h5>
+                                                    <p class="text-muted">Revert schema changes when needed</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="migration-basics">
+                                    <h2>Migration Basics</h2>
+                                    <p>Understanding the fundamental concepts and commands for working with migrations.</p>
+
+                                    <h3>Creating Migrations</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Create migrations for changes in your models
+python manage.py makemigrations
+
+# Create migrations for a specific app
+python manage.py makemigrations myapp
+
+# Create empty migration (for custom operations)
+python manage.py makemigrations myapp --empty
+
+# Verbose output to see what will be generated
+python manage.py makemigrations --verbosity 2</code></pre>
+                                    </div>
+
+                                    <h3>Applying Migrations</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Apply all migrations
+python manage.py migrate
+
+# Apply migrations for a specific app
+python manage.py migrate myapp
+
+# Apply migrations up to a specific migration
+python manage.py migrate myapp 0001_initial
+
+# Show migration plan without applying
+python manage.py migrate --plan</code></pre>
+                                    </div>
+
+                                    <h3>Checking Migration Status</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Show migration status
+python manage.py showmigrations
+
+# Show applied migrations
+python manage.py showmigrations --list
+
+# Show SQL for migrations
+python manage.py sqlmigrate myapp 0001_initial</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="migration-workflow">
+                                    <h2>Migration Workflow</h2>
+                                    <p>The typical workflow for making and applying migrations in a development environment.</p>
+
+                                    <div class="alert-note">
+                                        <strong>Standard Workflow:</strong>
+                                        <ol class="mb-0">
+                                            <li>Make changes to your models</li>
+                                            <li>Run <code>makemigrations</code> to create migration files</li>
+                                            <li>Run <code>migrate</code> to apply changes to database</li>
+                                            <li>Commit migration files to version control</li>
+                                        </ol>
+                                    </div>
+
+                                    <h3>Example Workflow</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># 1. Define your model
+# models.py
+from django.db import models
+
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># 2. Create migration
+python manage.py makemigrations blog
+
+# Output: 
+# Migrations for 'blog':
+#   blog/migrations/0001_initial.py
+#     - Create model Article</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># 3. Apply migration
+python manage.py migrate blog
+
+# Output:
+# Operations to perform:
+#   Apply all migrations: blog
+# Running migrations:
+#   Applying blog.0001_initial... OK</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="migration-files">
+                                    <h2>Migration Files</h2>
+                                    <p>Understanding the structure and content of migration files.</p>
+
+                                    <h3>Migration File Structure</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Generated migration file: 0001_initial.py
+from django.db import migrations, models
+
+class Migration(migrations.Migration):
+    # Migration dependencies (other migrations this depends on)
+    initial = True
+    
+    # Operations to perform
+    operations = [
+        migrations.CreateModel(
+            name='Article',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, 
+                 primary_key=True, serialize=False, 
+                 verbose_name='ID')),
+                ('title', models.CharField(max_length=200)),
+                ('content', models.TextField()),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+            ],
+        ),
+    ]</code></pre>
+                                    </div>
+
+                                    <h3>Common Migration Operations</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Various migration operations
+operations = [
+    # Create a new model
+    migrations.CreateModel(...),
+    
+    # Add a field to existing model
+    migrations.AddField(
+        model_name='article',
+        name='slug',
+        field=models.SlugField(max_length=200, unique=True),
+    ),
+    
+    # Remove a field
+    migrations.RemoveField(
+        model_name='article',
+        name='old_field',
+    ),
+    
+    # Alter a field
+    migrations.AlterField(
+        model_name='article',
+        name='title',
+        field=models.CharField(max_length=300),  # Increased length
+    ),
+    
+    # Rename a field
+    migrations.RenameField(
+        model_name='article',
+        old_name='pub_date',
+        new_name='published_date',
+    ),
+]</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="model-changes">
+                                    <h2>Common Model Changes</h2>
+                                    <p>How different types of model changes generate different migration operations.</p>
+
+                                    <h3>Adding Fields</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Before
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+
+# After - Adding a new field
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    slug = models.SlugField(unique=True)  # New field
+    published = models.BooleanField(default=False)  # New field</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Generated migration
+operations = [
+    migrations.AddField(
+        model_name='article',
+        name='published',
+        field=models.BooleanField(default=False),
+    ),
+    migrations.AddField(
+        model_name='article',
+        name='slug',
+        field=models.SlugField(unique=True, max_length=200),
+    ),
+]</code></pre>
+                                    </div>
+
+                                    <h3>Modifying Fields</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Before
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    # ...
+
+# After - Modifying field properties
+class Article(models.Model):
+    title = models.CharField(max_length=300)  # Increased max_length
+    # ...</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Generated migration
+operations = [
+    migrations.AlterField(
+        model_name='article',
+        name='title',
+        field=models.CharField(max_length=300),
+    ),
+]</code></pre>
+                                    </div>
+
+                                    <h3>Renaming Models and Fields</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Renaming a model
+# Before: class BlogPost(models.Model):
+# After: class Article(models.Model):
+
+# Renaming a field
+# Before: pub_date = models.DateTimeField()
+# After: published_date = models.DateTimeField()</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Generated migration for field rename
+operations = [
+    migrations.RenameField(
+        model_name='article',
+        old_name='pub_date',
+        new_name='published_date',
+    ),
+]</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="data-migrations">
+                                    <h2>Data Migrations</h2>
+                                    <p>Custom migrations for data manipulation alongside schema changes.</p>
+
+                                    <h3>Creating Data Migrations</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Create empty migration for data operations
+python manage.py makemigrations myapp --empty</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># data_migration.py
+from django.db import migrations
+
+def add_default_categories(apps, schema_editor):
+    # Get the historical version of the model
+    Category = apps.get_model('myapp', 'Category')
+    
+    # Create default categories
+    Category.objects.bulk_create([
+        Category(name='Technology', slug='technology'),
+        Category(name='Science', slug='science'),
+        Category(name='Arts', slug='arts'),
+    ])
+
+def reverse_add_categories(apps, schema_editor):
+    # Reverse operation - delete the categories
+    Category = apps.get_model('myapp', 'Category')
+    Category.objects.filter(slug__in=['technology', 'science', 'arts']).delete()
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ('myapp', '0001_initial'),
+    ]
+    
+    operations = [
+        migrations.RunPython(
+            add_default_categories,
+            reverse_add_categories,
+        ),
+    ]</code></pre>
+                                    </div>
+
+                                    <h3>Complex Data Migrations</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Complex data migration example
+def migrate_author_data(apps, schema_editor):
+    Article = apps.get_model('blog', 'Article')
+    User = apps.get_model('auth', 'User')
+    
+    # Get or create default author
+    author, created = User.objects.get_or_create(
+        username='system',
+        defaults={'email': 'system@example.com'}
+    )
+    
+    # Update all articles without author
+    Article.objects.filter(author__isnull=True).update(author=author)
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ('blog', '0002_article_author'),
+    ]
+    
+    operations = [
+        migrations.RunPython(
+            migrate_author_data,
+            # Reverse function can be omitted if not needed
+        ),
+    ]</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="squashing-migrations">
+                                    <h2>Squashing Migrations</h2>
+                                    <p>Combining multiple migrations into a single migration to reduce complexity.</p>
+
+                                    <h3>Why Squash Migrations?</h3>
+                                    <ul>
+                                        <li><strong>Reduce migration count</strong> - Fewer files to manage</li>
+                                        <li><strong>Improve performance</strong> - Faster migration application</li>
+                                        <li><strong>Clean up history</strong> - Remove intermediate states</li>
+                                    </ul>
+
+                                    <h3>Squashing Process</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Squash migrations for an app
+python manage.py squashmigrations myapp 0001 0010
+
+# This creates a new migration that replaces 0001 through 0010</code></pre>
+                                    </div>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Squashed migration file
+class Migration(migrations.Migration):
+    # This migration replaces:
+    #   myapp.0001_initial
+    #   myapp.0002_add_slug
+    #   myapp.0003_remove_old_field
+    #   ... up to myapp.0010_final_change
+    
+    replaces = [
+        ('myapp', '0001_initial'),
+        ('myapp', '0002_add_slug'),
+        ('myapp', '0003_remove_old_field'),
+        # ... more migrations
+    ]
+    
+    operations = [
+        # Combined operations from all replaced migrations
+        migrations.CreateModel(...),
+        migrations.AddField(...),
+        migrations.RemoveField(...),
+        # ...
+    ]</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="advanced-migrations">
+                                    <h2>Advanced Migration Techniques</h2>
+                                    <p>Advanced patterns and techniques for complex migration scenarios.</p>
+
+                                    <h3>Conditional Migrations</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Conditional operations based on database features
+from django.db import migrations, models
+
+class Migration(migrations.Migration):
+    operations = [
+        migrations.AddField(
+            model_name='article',
+            name='search_vector',
+            field=models.TextField(blank=True, null=True),
+        ),
+        # Only run this operation for PostgreSQL
+        migrations.RunSQL(
+            sql="""
+                CREATE INDEX article_search_idx 
+                ON blog_article USING gin(to_tsvector('english', search_vector));
+            """,
+            reverse_sql="DROP INDEX article_search_idx;",
+            # Only run on PostgreSQL
+            state_operations=[],
+        ),
+    ]</code></pre>
+                                    </div>
+
+                                    <h3>Complex Schema Changes</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Splitting a table or complex schema changes
+class Migration(migrations.Migration):
+    dependencies = [
+        ('blog', '0001_initial'),
+    ]
+    
+    operations = [
+        # Create new model for split data
+        migrations.CreateModel(
+            name='ArticleMetadata',
+            fields=[
+                ('id', models.BigAutoField(...)),
+                ('article', models.OneToOneField(...)),
+                ('meta_description', models.TextField()),
+                ('keywords', models.CharField(max_length=500)),
+            ],
+        ),
+        
+        # Data migration to move data
+        migrations.RunPython(
+            code=move_metadata,
+            reverse_code=reverse_move_metadata,
+        ),
+        
+        # Remove old fields
+        migrations.RemoveField(
+            model_name='article',
+            name='meta_description',
+        ),
+        migrations.RemoveField(
+            model_name='article',
+            name='keywords',
+        ),
+    ]</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="troubleshooting">
+                                    <h2>Troubleshooting Common Issues</h2>
+                                    <p>Solutions for common migration problems and errors.</p>
+
+                                    <h3>Migration Conflicts</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># When you have migration conflicts:
+# 1. Check current state
+python manage.py showmigrations
+
+# 2. If needed, rollback
+python manage.py migrate myapp 0005
+
+# 3. Create merge migration
+python manage.py makemigrations --merge</code></pre>
+                                    </div>
+
+                                    <h3>Fake Migrations</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Mark migrations as applied without running them
+# Useful when you've manually applied changes
+python manage.py migrate --fake myapp 0001_initial
+
+# Fake initial migration for existing database
+python manage.py migrate --fake-initial</code></pre>
+                                    </div>
+
+                                    <h3>Resetting Migrations</h3>
+                                    <div class="alert-warning">
+                                        <strong>Warning:</strong> Only use this in development! This will delete your migration history.
+                                    </div>
+                                    <div class="code-block">
+                                        <pre><code class="language-bash"># Nuclear option - reset migrations (development only!)
+# 1. Delete all migration files except __init__.py
+# 2. Reset database table
+python manage.py migrate --fake myapp zero
+
+# 3. Create new initial migration
+python manage.py makemigrations myapp
+
+# 4. Fake apply the initial migration
+python manage.py migrate --fake-initial</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="best-practices">
+                                    <h2>Best Practices</h2>
+                                    <p>Follow these guidelines for smooth migration management.</p>
+
+                                    <h3>General Guidelines</h3>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Do</th>
+                                                    <th>Don't</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>✅ Commit migration files to version control</td>
+                                                    <td>❌ Edit migration files after they're committed</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Test migrations on a copy of production data</td>
+                                                    <td>❌ Run untested migrations on production</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use data migrations for data changes</td>
+                                                    <td>❌ Manually edit data alongside schema changes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Squash migrations periodically</td>
+                                                    <td>❌ Let migration count grow indefinitely</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Review generated SQL for complex operations</td>
+                                                    <td>❌ Blindly trust automatic migration generation</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h3>Production Deployment</h3>
+                                    <div class="alert-note">
+                                        <strong>Production Checklist:</strong>
+                                        <ul class="mb-0">
+                                            <li>Backup database before running migrations</li>
+                                            <li>Run migrations during maintenance windows for large changes</li>
+                                            <li>Test rollback procedures</li>
+                                            <li>Monitor migration progress and performance</li>
+                                            <li>Use <code>--plan</code> to preview changes first</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <section id="migration-commands">
+                                    <h2>Migration Command Reference</h2>
+                                    <p>Complete reference of migration-related management commands.</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Command</th>
+                                                    <th>Description</th>
+                                                    <th>Common Options</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><code>makemigrations</code></td>
+                                                    <td>Create new migrations based on model changes</td>
+                                                    <td><code>--empty, --name, --dry-run</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>migrate</code></td>
+                                                    <td>Apply migrations to database</td>
+                                                    <td><code>--fake, --plan, --database</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>showmigrations</code></td>
+                                                    <td>Show migration status and plan</td>
+                                                    <td><code>--list, --plan</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>sqlmigrate</code></td>
+                                                    <td>Show SQL for specific migration</td>
+                                                    <td><code>--database, --backwards</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>squashmigrations</code></td>
+                                                    <td>Combine multiple migrations into one</td>
+                                                    <td><code>--no-optimize, --squashed-name</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+
+                                <section id="next-steps">
+                                    <h2>Next Steps</h2>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-table fa-2x text-primary mb-3"></i>
+                                                    <h5 class="card-title">Models and Fields</h5>
+                                                    <p class="card-text">Learn about Django models, fields, and relationships.</p>
+                                                    <a href="models.html" class="btn btn-primary">Models Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-search fa-2x text-success mb-3"></i>
+                                                    <h5 class="card-title">Making Queries</h5>
+                                                    <p class="card-text">Learn how to query your database using Django's ORM.</p>
+                                                    <a href="queries.html" class="btn btn-success">Queries Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-tasks fa-2x text-warning mb-3"></i>
+                                                    <h5 class="card-title">Deployment Checklist</h5>
+                                                    <p class="card-text">Prepare your application for production deployment.</p>
+                                                    <a href="../deployment/production.html" class="btn btn-warning">Deployment Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="sticky-top" style="top: 6rem;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">On This Page</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <nav class="nav flex-column">
+                                                <a class="nav-link ps-0" href="#introduction">Introduction</a>
+                                                <a class="nav-link ps-0" href="#migration-basics">Migration Basics</a>
+                                                <a class="nav-link ps-0" href="#migration-workflow">Migration Workflow</a>
+                                                <a class="nav-link ps-0" href="#migration-files">Migration Files</a>
+                                                <a class="nav-link ps-0" href="#model-changes">Model Changes</a>
+                                                <a class="nav-link ps-0" href="#data-migrations">Data Migrations</a>
+                                                <a class="nav-link ps-0" href="#squashing-migrations">Squashing Migrations</a>
+                                                <a class="nav-link ps-0" href="#advanced-migrations">Advanced Techniques</a>
+                                                <a class="nav-link ps-0" href="#troubleshooting">Troubleshooting</a>
+                                                <a class="nav-link ps-0" href="#best-practices">Best Practices</a>
+                                                <a class="nav-link ps-0" href="#migration-commands">Command Reference</a>
+                                                <a class="nav-link ps-0" href="#next-steps">Next Steps</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Quick Commands</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <code class="small d-block mb-1">makemigrations</code>
+                                            <code class="small d-block mb-1">migrate</code>
+                                            <code class="small d-block mb-1">showmigrations</code>
+                                            <code class="small d-block">sqlmigrate</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Common Issues</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-warning p-2 mb-2">
+                                                <small><strong>Conflict:</strong> Use --merge</small>
+                                            </div>
+                                            <div class="alert alert-info p-2 mb-2">
+                                                <small><strong>Manual changes:</strong> Use --fake</small>
+                                            </div>
+                                            <div class="alert alert-danger p-2">
+                                                <small><strong>Reset:</strong> migrate --fake zero</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Related Guides</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="list-group list-group-flush">
+                                                <a href="models.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-table me-2 text-primary"></i>
+                                                    Models and Fields
+                                                </a>
+                                                <a href="queries.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-search me-2 text-success"></i>
+                                                    Making Queries
+                                                </a>
+                                                <a href="../deployment/production.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-tasks me-2 text-warning"></i>
+                                                    Deployment Checklist
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Django Documentation</h5>
+                    <p class="text-muted">Complete guide to building web applications with Django.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html" class="text-muted">Home</a></li>
+                        <li><a href="../../quick-start.html" class="text-muted">Quick Start</a></li>
+                        <li><a href="../getting-started/tutorial.html" class="text-muted">Tutorial</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://djangoproject.com" class="text-muted" target="_blank">Official Django Website</a></li>
+                        <li><a href="https://docs.djangoproject.com" class="text-muted" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/django" class="text-muted" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Django Documentation. This is a static documentation site for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
