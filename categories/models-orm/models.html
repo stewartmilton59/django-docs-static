@@ -3,16 +3,1125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Title - Django Documentation</title>
+    <title>Models and Fields - Django Documentation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation (copy from installation.html, adjust active states) -->
-  
-    <!-- Sidebar (copy from installation.html, adjust active states) -->
-    <!-- Main content with appropriate documentation -->
-    <!-- Footer (copy from installation.html) -->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-book me-2"></i>Django Docs
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../quick-start.html">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../search.html">Search</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-3">
+                    <div class="search-container">
+                        <form action="../../search.html" method="get" class="d-flex">
+                            <input type="text" name="q" class="form-control" placeholder="Search documentation...">
+                            <button type="submit" class="btn btn-outline-light ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light sidebar">
+                <div class="position-sticky pt-5">
+                    <div class="p-3">
+                        <h6 class="text-uppercase fw-bold text-muted mb-3">Documentation</h6>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../index.html">
+                                    <i class="fas fa-home me-2"></i>Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../../quick-start.html">
+                                    <i class="fas fa-rocket me-2"></i>Quick Start
+                                </a>
+                            </li>
+                            
+                            <!-- Getting Started -->
+                            <li class="category-header">
+                                <i class="fas fa-play-circle me-2"></i>Getting Started
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/installation.html">
+                                    Installation Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/first-project.html">
+                                    Writing Your First Django App
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../getting-started/tutorial.html">
+                                    Complete Tutorial
+                                </a>
+                            </li>
+
+                            <!-- Models & ORM -->
+                            <li class="category-header">
+                                <i class="fas fa-database me-2"></i>Models & ORM
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active ps-4" href="models.html">
+                                    Models and Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="queries.html">
+                                    Making Queries
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="migrations.html">
+                                    Database Migrations
+                                </a>
+                            </li>
+
+                            <!-- Views & Templates -->
+                            <li class="category-header">
+                                <i class="fas fa-code me-2"></i>Views & Templates
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/views.html">
+                                    Class-based and Function Views
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/templates.html">
+                                    Template Language
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../views-templates/forms.html">
+                                    Forms and Validation
+                                </a>
+                            </li>
+
+                            <!-- Deployment -->
+                            <li class="category-header">
+                                <i class="fas fa-server me-2"></i>Deployment
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/production.html">
+                                    Deployment Checklist
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/performance.html">
+                                    Performance Optimization
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ps-4" href="../deployment/security.html">
+                                    Security Best Practices
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-4 py-4 main-content">
+                <div class="pt-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../../index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="../../index.html">Models & ORM</a></li>
+                            <li class="breadcrumb-item active">Models and Fields</li>
+                        </ol>
+                    </nav>
+
+                    <article class="doc-content">
+                        <header class="mb-4">
+                            <h1>Models and Fields</h1>
+                            <div class="text-muted d-flex align-items-center gap-3">
+                                <span><i class="fas fa-clock me-1"></i> 25 min read</span>
+                                <span><i class="fas fa-calendar me-1"></i> Updated Jan 2024</span>
+                                <span class="badge bg-primary">Database</span>
+                            </div>
+                        </header>
+
+                        <div class="alert alert-info">
+                            <strong><i class="fas fa-lightbulb me-2"></i>Pro Tip:</strong> Models are the single, definitive source of information about your data. They contain the essential fields and behaviors of the data you're storing.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <section id="introduction">
+                                    <h2>Introduction</h2>
+                                    <p>Django models define the structure of your database tables. Each model maps to a single database table, and each attribute represents a database field.</p>
+                                    
+                                    <div class="row text-center mb-4">
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-table fa-2x text-primary mb-2"></i>
+                                                    <h5>Database Tables</h5>
+                                                    <p class="text-muted">Each model = one database table</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-columns fa-2x text-success mb-2"></i>
+                                                    <h5>Fields</h5>
+                                                    <p class="text-muted">Attributes = database columns</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card border-0">
+                                                <div class="card-body">
+                                                    <i class="fas fa-link fa-2x text-warning mb-2"></i>
+                                                    <h5>Relationships</h5>
+                                                    <p class="text-muted">Connect models together</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section id="basic-model">
+                                    <h2>Basic Model Structure</h2>
+                                    <p>The foundation of every Django model - from simple to complex structures.</p>
+
+                                    <h3>Simple Model Example</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db import models
+
+class Article(models.Model):
+    # Basic fields
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    published = models.BooleanField(default=False)
+    
+    # String representation
+    def __str__(self):
+        return self.title
+    
+    # Custom methods
+    def get_summary(self):
+        return self.content[:100] + "..." if len(self.content) > 100 else self.content
+    
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name_plural = "Articles"</code></pre>
+                                    </div>
+
+                                    <h3>Model Inheritance</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python"># Abstract base class (doesn't create database table)
+class TimeStampedModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        abstract = True
+
+# Concrete model inheriting from abstract base
+class Article(TimeStampedModel):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    
+    def __str__(self):
+        return self.title
+
+# Multi-table inheritance
+class PremiumArticle(Article):
+    premium_content = models.TextField()
+    expiration_date = models.DateField()</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="field-types">
+                                    <h2>Field Types</h2>
+                                    <p>Django provides a wide variety of field types to represent different kinds of data.</p>
+
+                                    <h3>Common Field Types</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+class Product(models.Model):
+    # String fields
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    description = models.TextField(blank=True)
+    
+    # Numeric fields
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField(default=0)
+    rating = models.FloatField(
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
+    )
+    
+    # Date and time fields
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    available_from = models.DateField()
+    available_until = models.DateField(null=True, blank=True)
+    
+    # Boolean fields
+    is_available = models.BooleanField(default=True)
+    is_featured = models.BooleanField(default=False)
+    
+    # File fields
+    image = models.ImageField(upload_to='products/', null=True, blank=True)
+    document = models.FileField(upload_to='documents/', blank=True)
+    
+    # URL and Email
+    website = models.URLField(blank=True)
+    contact_email = models.EmailField()
+    
+    # Choices field
+    CATEGORY_CHOICES = [
+        ('ELEC', 'Electronics'),
+        ('CLO', 'Clothing'),
+        ('BOOK', 'Books'),
+        ('HOME', 'Home & Garden'),
+    ]
+    category = models.CharField(
+        max_length=4,
+        choices=CATEGORY_CHOICES,
+        default='ELEC'
+    )</code></pre>
+                                    </div>
+
+                                    <h3>Field Options</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">class ExampleModel(models.Model):
+    # Common field options
+    title = models.CharField(
+        max_length=200,
+        verbose_name="Article Title",  # Human-readable name
+        help_text="Enter a descriptive title for the article",  # Help text
+        unique=True,  # Must be unique across all instances
+        db_index=True,  # Create database index
+    )
+    
+    content = models.TextField(
+        blank=True,  # Allow empty in forms
+        null=True,   # Allow NULL in database
+    )
+    
+    published_date = models.DateTimeField(
+        auto_now_add=True,  # Set on creation
+        auto_now=False,     # Don't update on save
+    )
+    
+    # Default values
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('DRAFT', 'Draft'),
+            ('PUBLISHED', 'Published'),
+            ('ARCHIVED', 'Archived'),
+        ],
+        default='DRAFT'
+    )
+    
+    # Custom error messages
+    slug = models.SlugField(
+        unique=True,
+        error_messages={
+            'unique': 'This slug is already in use.'
+        }
+    )</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="relationships">
+                                    <h2>Model Relationships</h2>
+                                    <p>Connect models together using ForeignKey, ManyToManyField, and OneToOneField.</p>
+
+                                    <h3>ForeignKey Relationships</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db import models
+from django.contrib.auth.models import User
+
+class Author(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True)
+    website = models.URLField(blank=True)
+    
+    def __str__(self):
+        return self.user.username
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    description = models.TextField(blank=True)
+    
+    def __str__(self):
+        return self.name
+
+class Article(models.Model):
+    # ForeignKey to Author (one-to-many)
+    author = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,  # Delete article if author is deleted
+        related_name='articles',   # Reverse relation name
+        verbose_name="Article Author"
+    )
+    
+    # ForeignKey to Category (one-to-many)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,  # Set to NULL if category is deleted
+        null=True,
+        blank=True,
+        related_name='articles'
+    )
+    
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    
+    def __str__(self):
+        return self.title</code></pre>
+                                    </div>
+
+                                    <h3>ManyToMany Relationships</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(unique=True)
+    
+    def __str__(self):
+        return self.name
+
+class Article(models.Model):
+    # Basic fields
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    
+    # Many-to-many relationship
+    tags = models.ManyToManyField(
+        Tag,
+        related_name='articles',
+        blank=True,
+        help_text="Select tags for this article"
+    )
+    
+    def __str__(self):
+        return self.title
+
+# Through model for additional data
+class ArticleTag(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    added_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ['article', 'tag']
+
+class ArticleWithThrough(models.Model):
+    title = models.CharField(max_length=200)
+    tags = models.ManyToManyField(
+        Tag,
+        through=ArticleTag,
+        through_fields=('article', 'tag'),
+        related_name='articles_with_through'
+    )</code></pre>
+                                    </div>
+
+                                    <h3>OneToOne Relationships</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.contrib.auth.models import User
+
+class UserProfile(models.Model):
+    # One-to-one relationship with User
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='profile',
+        primary_key=True  # Use user's ID as primary key
+    )
+    
+    # Additional profile fields
+    bio = models.TextField(blank=True)
+    avatar = models.ImageField(
+        upload_to='avatars/',
+        blank=True,
+        null=True
+    )
+    website = models.URLField(blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
+
+# Usage example
+user = User.objects.get(username='john')
+profile = user.profile  # Access via reverse relation
+print(profile.bio)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="model-methods">
+                                    <h2>Model Methods</h2>
+                                    <p>Add custom behavior to your models with instance methods, class methods, and property decorators.</p>
+
+                                    <h3>Instance Methods</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">class Article(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.title
+    
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('article_detail', kwargs={'pk': self.pk})
+    
+    def publish(self):
+        """Publish the article"""
+        self.published = True
+        self.save()
+    
+    def unpublish(self):
+        """Unpublish the article"""
+        self.published = False
+        self.save()
+    
+    def get_summary(self, length=150):
+        """Return a summary of the content"""
+        if len(self.content) <= length:
+            return self.content
+        return self.content[:length] + "..."
+    
+    def word_count(self):
+        """Return the number of words in the content"""
+        return len(self.content.split())
+    
+    def reading_time(self):
+        """Estimate reading time in minutes"""
+        words_per_minute = 200
+        return max(1, self.word_count() // words_per_minute)</code></pre>
+                                    </div>
+
+                                    <h3>Property Decorators</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">class Product(models.Model):
+    name = models.CharField(max_length=100)
+    base_price = models.DecimalField(max_digits=10, decimal_places=2)
+    tax_rate = models.DecimalField(max_digits=5, decimal_places=2, default=0.1)
+    discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    
+    @property
+    def discounted_price(self):
+        """Calculate price after discount"""
+        discount_amount = self.base_price * (self.discount_percentage / 100)
+        return self.base_price - discount_amount
+    
+    @property
+    def final_price(self):
+        """Calculate final price including tax"""
+        return self.discounted_price * (1 + self.tax_rate)
+    
+    @property
+    def is_on_sale(self):
+        """Check if product is on sale"""
+        return self.discount_percentage > 0
+    
+    @property
+    def sale_message(self):
+        """Generate sale message"""
+        if self.is_on_sale:
+            return f"Save {self.discount_percentage}%!"
+        return "Regular Price"</code></pre>
+                                    </div>
+
+                                    <h3>Manager Methods</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(published=True)
+    
+    def recent(self, days=7):
+        """Return articles published in the last N days"""
+        from django.utils import timezone
+        from datetime import timedelta
+        return self.filter(
+            created_at__gte=timezone.now() - timedelta(days=days)
+        )
+    
+    def by_author(self, author):
+        """Return published articles by specific author"""
+        return self.filter(author=author)
+
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    published = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    
+    # Default manager
+    objects = models.Manager()
+    
+    # Custom manager
+    published_objects = PublishedManager()
+    
+    def __str__(self):
+        return self.title
+
+# Usage
+published_articles = Article.published_objects.all()
+recent_articles = Article.published_objects.recent(days=30)
+author_articles = Article.published_objects.by_author(some_author)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="meta-options">
+                                    <h2>Meta Options</h2>
+                                    <p>Control model-level behavior and database table settings with Meta inner class.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python">class Article(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(default=False)
+    
+    class Meta:
+        # Database table name
+        db_table = 'blog_articles'
+        
+        # Default ordering
+        ordering = ['-created_at']
+        
+        # Human-readable names
+        verbose_name = 'Blog Article'
+        verbose_name_plural = 'Blog Articles'
+        
+        # Constraints
+        constraints = [
+            models.UniqueConstraint(
+                fields=['title', 'author'],
+                name='unique_author_title'
+            ),
+            models.CheckConstraint(
+                check=models.Q(word_count__gt=0),
+                name='word_count_positive'
+            )
+        ]
+        
+        # Indexes
+        indexes = [
+            models.Index(fields=['created_at']),
+            models.Index(fields=['published', 'created_at']),
+        ]
+        
+        # Permissions
+        permissions = [
+            ('can_publish', 'Can publish articles'),
+            ('can_archive', 'Can archive articles'),
+        ]
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='children'
+    )
+    
+    class Meta:
+        # Ordering for tree-like structures
+        ordering = ['name']
+        
+        # Unique together constraint
+        unique_together = ['name', 'parent']
+        
+        # Human-readable names
+        verbose_name_plural = 'Categories'</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="validation">
+                                    <h2>Data Validation</h2>
+                                    <p>Ensure data integrity with field validators and model clean methods.</p>
+
+                                    <h3>Field Validators</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.core.validators import (
+    MinValueValidator, 
+    MaxValueValidator,
+    MinLengthValidator,
+    RegexValidator
+)
+from django.core.exceptions import ValidationError
+
+def validate_even_number(value):
+    if value % 2 != 0:
+        raise ValidationError(
+            '%(value)s is not an even number',
+            params={'value': value},
+        )
+
+class Product(models.Model):
+    name = models.CharField(
+        max_length=100,
+        validators=[
+            MinLengthValidator(3),
+            RegexValidator(
+                regex=r'^[A-Za-z0-9 ]+$',
+                message='Name can only contain letters, numbers and spaces'
+            )
+        ]
+    )
+    
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        validators=[
+            MinValueValidator(0.01),
+            MaxValueValidator(10000)
+        ]
+    )
+    
+    quantity = models.IntegerField(
+        validators=[MinValueValidator(0)]
+    )
+    
+    even_number = models.IntegerField(
+        validators=[validate_even_number]
+    )</code></pre>
+                                    </div>
+
+                                    <h3>Model Clean Method</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">class Event(models.Model):
+    title = models.CharField(max_length=200)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    max_attendees = models.IntegerField()
+    current_attendees = models.IntegerField(default=0)
+    
+    def clean(self):
+        """Custom validation at the model level"""
+        from django.core.exceptions import ValidationError
+        
+        # Check that end date is after start date
+        if self.end_date <= self.start_date:
+            raise ValidationError({
+                'end_date': 'End date must be after start date.'
+            })
+        
+        # Check that current attendees don't exceed maximum
+        if self.current_attendees > self.max_attendees:
+            raise ValidationError({
+                'current_attendees': 'Cannot exceed maximum attendees.'
+            })
+        
+        # Check that maximum attendees is reasonable
+        if self.max_attendees > 1000:
+            raise ValidationError({
+                'max_attendees': 'Maximum attendees cannot exceed 1000.'
+            })
+    
+    def save(self, *args, **kwargs):
+        """Override save to call full_clean"""
+        self.full_clean()
+        super().save(*args, **kwargs)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="signals">
+                                    <h2>Model Signals</h2>
+                                    <p>Execute code at specific moments in a model's lifecycle using signals.</p>
+
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db.models.signals import pre_save, post_save, pre_delete, post_delete
+from django.dispatch import receiver
+from django.utils.text import slugify
+
+@receiver(pre_save, sender=Article)
+def create_article_slug(sender, instance, **kwargs):
+    """Automatically create slug from title before saving"""
+    if not instance.slug:
+        instance.slug = slugify(instance.title)
+
+@receiver(pre_save, sender=Article)
+def update_article_modified(sender, instance, **kwargs):
+    """Update modified timestamp before saving"""
+    if instance.pk:  # Only for existing instances
+        instance.modified_at = timezone.now()
+
+@receiver(post_save, sender=Article)
+def send_article_notification(sender, instance, created, **kwargs):
+    """Send notification when article is created"""
+    if created:
+        # Send email notification
+        send_mail(
+            f'New Article: {instance.title}',
+            f'A new article "{instance.title}" has been created.',
+            'noreply@example.com',
+            ['admin@example.com'],
+            fail_silently=True,
+        )
+
+@receiver(pre_delete, sender=Article)
+def backup_article_content(sender, instance, **kwargs):
+    """Backup article content before deletion"""
+    ArticleBackup.objects.create(
+        title=instance.title,
+        content=instance.content,
+        deleted_at=timezone.now()
+    )
+
+# Connect signals in apps.py
+class BlogConfig(AppConfig):
+    name = 'blog'
+    
+    def ready(self):
+        import blog.signals</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="best-practices">
+                                    <h2>Best Practices</h2>
+                                    <p>Follow these guidelines for well-designed, maintainable models.</p>
+
+                                    <h3>Model Design Guidelines</h3>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Do</th>
+                                                    <th>Don't</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>✅ Use descriptive field names</td>
+                                                    <td>❌ Use abbreviations or unclear names</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Set appropriate max_length for CharField</td>
+                                                    <td>❌ Use excessively large max_length</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use null=True, blank=True appropriately</td>
+                                                    <td>❌ Mix null and blank without understanding</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Define __str__ methods</td>
+                                                    <td>❌ Leave models without string representation</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use related_name for reverse relations</td>
+                                                    <td>❌ Rely on default _set names</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Add indexes for frequently queried fields</td>
+                                                    <td>❌ Add indexes to every field</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>✅ Use choices for limited options</td>
+                                                    <td>❌ Use free-text for predefined options</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h3>Performance Considerations</h3>
+                                    <div class="alert-note">
+                                        <strong>Performance Tips:</strong>
+                                        <ul class="mb-0">
+                                            <li>Use <code>select_related()</code> for ForeignKey relationships</li>
+                                            <li>Use <code>prefetch_related()</code> for ManyToMany relationships</li>
+                                            <li>Add database indexes for frequently filtered fields</li>
+                                            <li>Use <code>only()</code> and <code>defer()</code> to limit loaded fields</li>
+                                            <li>Consider denormalization for frequently accessed related data</li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                                <section id="common-patterns">
+                                    <h2>Common Patterns</h2>
+                                    <p>Reusable model patterns for common use cases.</p>
+
+                                    <h3>TimeStamped Model</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.db import models
+
+class TimeStampedModel(models.Model):
+    """Abstract base class with created and updated timestamps"""
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        abstract = True
+
+class Article(TimeStampedModel):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    
+    class Meta:
+        ordering = ['-created_at']</code></pre>
+                                    </div>
+
+                                    <h3>Soft Delete Model</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">class SoftDeleteManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+    
+    def with_deleted(self):
+        return super().get_queryset()
+
+class SoftDeleteModel(models.Model):
+    is_deleted = models.BooleanField(default=False)
+    deleted_at = models.DateTimeField(null=True, blank=True)
+    
+    objects = SoftDeleteManager()
+    all_objects = models.Manager()  # Include deleted objects
+    
+    def soft_delete(self):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save()
+    
+    def restore(self):
+        self.is_deleted = False
+        self.deleted_at = None
+        self.save()
+    
+    class Meta:
+        abstract = True
+
+class Article(SoftDeleteModel):
+    title = models.CharField(max_length=200)
+    content = models.TextField()</code></pre>
+                                    </div>
+
+                                    <h3>Audit Model</h3>
+                                    <div class="code-block">
+                                        <pre><code class="language-python">from django.contrib.auth.models import User
+
+class AuditModel(models.Model):
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='%(class)s_created'
+    )
+    updated_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='%(class)s_updated'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        abstract = True
+
+class Article(AuditModel):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    
+    def save(self, *args, **kwargs):
+        # Set created_by on first save
+        if not self.pk and not self.created_by_id:
+            # You would typically set this from the request user
+            pass
+        super().save(*args, **kwargs)</code></pre>
+                                    </div>
+                                </section>
+
+                                <section id="next-steps">
+                                    <h2>Next Steps</h2>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-search fa-2x text-success mb-3"></i>
+                                                    <h5 class="card-title">Making Queries</h5>
+                                                    <p class="card-text">Learn how to query your database using Django's ORM.</p>
+                                                    <a href="queries.html" class="btn btn-success">Queries Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-sync fa-2x text-warning mb-3"></i>
+                                                    <h5 class="card-title">Database Migrations</h5>
+                                                    <p class="card-text">Learn how to manage database schema changes.</p>
+                                                    <a href="migrations.html" class="btn btn-warning">Migrations Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-window-restore fa-2x text-info mb-3"></i>
+                                                    <h5 class="card-title">Forms and Validation</h5>
+                                                    <p class="card-text">Learn how to create forms from models.</p>
+                                                    <a href="../views-templates/forms.html" class="btn btn-info">Forms Guide</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="sticky-top" style="top: 6rem;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">On This Page</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <nav class="nav flex-column">
+                                                <a class="nav-link ps-0" href="#introduction">Introduction</a>
+                                                <a class="nav-link ps-0" href="#basic-model">Basic Model Structure</a>
+                                                <a class="nav-link ps-0" href="#field-types">Field Types</a>
+                                                <a class="nav-link ps-0" href="#relationships">Model Relationships</a>
+                                                <a class="nav-link ps-0" href="#model-methods">Model Methods</a>
+                                                <a class="nav-link ps-0" href="#meta-options">Meta Options</a>
+                                                <a class="nav-link ps-0" href="#validation">Data Validation</a>
+                                                <a class="nav-link ps-0" href="#signals">Model Signals</a>
+                                                <a class="nav-link ps-0" href="#best-practices">Best Practices</a>
+                                                <a class="nav-link ps-0" href="#common-patterns">Common Patterns</a>
+                                                <a class="nav-link ps-0" href="#next-steps">Next Steps</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Quick Reference</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-primary p-2 mb-2">
+                                                <small><strong>Relationships:</strong> ForeignKey, ManyToMany, OneToOne</small>
+                                            </div>
+                                            <div class="alert alert-success p-2 mb-2">
+                                                <small><strong>Field Options:</strong> null, blank, default, choices</small>
+                                            </div>
+                                            <div class="alert alert-warning p-2">
+                                                <small><strong>Meta:</strong> ordering, verbose_name, indexes</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Common Fields</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <code class="small d-block mb-1">CharField / TextField</code>
+                                            <code class="small d-block mb-1">IntegerField / DecimalField</code>
+                                            <code class="small d-block mb-1">DateTimeField / DateField</code>
+                                            <code class="small d-block">ForeignKey / ManyToManyField</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Related Guides</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="list-group list-group-flush">
+                                                <a href="queries.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-search me-2 text-success"></i>
+                                                    Making Queries
+                                                </a>
+                                                <a href="migrations.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-sync me-2 text-warning"></i>
+                                                    Database Migrations
+                                                </a>
+                                                <a href="../views-templates/forms.html" class="list-group-item list-group-item-action">
+                                                    <i class="fas fa-window-restore me-2 text-info"></i>
+                                                    Forms and Validation
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Django Documentation</h5>
+                    <p class="text-muted">Complete guide to building web applications with Django.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../../index.html" class="text-muted">Home</a></li>
+                        <li><a href="../../quick-start.html" class="text-muted">Quick Start</a></li>
+                        <li><a href="../getting-started/tutorial.html" class="text-muted">Tutorial</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://djangoproject.com" class="text-muted" target="_blank">Official Django Website</a></li>
+                        <li><a href="https://docs.djangoproject.com" class="text-muted" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://github.com/django" class="text-muted" target="_blank">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-secondary">
+            <div class="text-center text-muted">
+                <p>&copy; 2024 Django Documentation. This is a static documentation site for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
 </body>
 </html>
