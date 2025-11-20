@@ -11,6 +11,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
+    padding-top: 56px;
 }
 
 /* Sidebar Styles */
@@ -27,7 +28,7 @@ body {
 
 .main-content {
     margin-left: 280px;
-    min-height: 100vh;
+    min-height: calc(100vh - 56px);
 }
 
 @media (max-width: 768px) {
@@ -49,38 +50,6 @@ body {
 /* Search */
 .search-container {
     position: relative;
-}
-
-.search-results {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 0.375rem;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
-    display: none;
-    z-index: 1000;
-}
-
-.search-result-item {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    color: var(--text-dark);
-}
-
-.search-result-item:hover {
-    background-color: #f8f9fa;
-    text-decoration: none;
-    color: var(--text-dark);
-}
-
-.search-result-item:last-child {
-    border-bottom: none;
 }
 
 /* Category Headers */
@@ -135,11 +104,25 @@ body {
     padding: 1rem;
     margin: 1rem 0;
     overflow-x: auto;
+    position: relative;
 }
 
 .code-block pre {
     margin: 0;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.copy-btn:hover {
+    opacity: 1;
 }
 
 /* Content Styles */
@@ -216,16 +199,31 @@ body {
     border-radius: 0.375rem;
 }
 
+.alert-success {
+    background-color: #e8f5e8;
+    border-left: 4px solid #4caf50;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.375rem;
+}
+
 /* Table Styles */
 .table {
     width: 100%;
     margin-bottom: 1rem;
     background-color: transparent;
+    border: 1px solid var(--border-color);
 }
 
 .table th {
     background-color: #f8f9fa;
     border-bottom: 2px solid var(--border-color);
+    padding: 0.75rem;
+}
+
+.table td {
+    padding: 0.75rem;
+    border-top: 1px solid var(--border-color);
 }
 
 /* Responsive Design */
@@ -272,4 +270,30 @@ html {
     background: var(--secondary-color);
     color: white;
     text-decoration: none;
+}
+
+/* Search Results */
+.search-result-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    text-decoration: none;
+    display: block;
+    color: var(--text-dark);
+    transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+    background-color: #f8f9fa;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-highlight {
+    background-color: #fff3cd;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.2rem;
 }
